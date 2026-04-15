@@ -51,6 +51,7 @@ The initial source inventory covers:
 ## Repository layout
 
 ```text
+ROADMAP.md                   Project roadmap and open planning questions.
 adr/                         Architectural decisions for this repo.
 schemas/                     JSON Schemas for evidence metadata.
 observables/
@@ -81,3 +82,10 @@ validation-set definitions, and human-explorable observational context.
 The link between the two should be a stable validation artifact:
 simulation outputs are compared to named observable products with
 explicit units, tolerances, covariance, and selection criteria.
+
+## Roadmap
+
+The projected development plan lives in [`ROADMAP.md`](ROADMAP.md).
+It is intentionally a living document: update it as source adapters,
+schemas, validation products, and Cosmic Foundry integration points
+become concrete.
