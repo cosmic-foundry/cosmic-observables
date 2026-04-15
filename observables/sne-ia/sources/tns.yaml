@@ -1,0 +1,28 @@
+id: tns
+title: Transient Name Server
+kind: archive
+domain: [transients, sne-ia]
+role: Official IAU naming, discovery, and classification report source for astronomical transients.
+homepage: https://www.wis-tns.org/
+api_or_download:
+  - https://www.wis-tns.org/content/tns-getting-started
+references:
+  - label: TNS getting started and API overview
+    url: https://www.wis-tns.org/content/tns-getting-started
+status: planned
+provenance:
+  authority: TNS / IAU supernova naming workflow
+  accessed: "2026-04-15"
+  license_or_terms: Check TNS API and bulk-use terms before storing derived artifacts.
+data_products:
+  - transient names and aliases
+  - coordinates
+  - discovery reports
+  - classification reports
+  - redshift and host metadata where reported
+known_caveats:
+  - Completeness changes across the pre-2016 and post-2016 naming eras.
+  - Classification confidence and report provenance must be preserved.
+next_actions:
+  - Add an adapter for authenticated API queries.
+  - Resolve canonical alias handling for historical supernova names.

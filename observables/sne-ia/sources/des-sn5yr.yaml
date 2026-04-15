@@ -1,0 +1,26 @@
+id: des-sn5yr
+title: Dark Energy Survey Supernova Program 5-year release
+kind: survey-release
+domain: [sne-ia, cosmology, photometry]
+role: Deep rolling-survey Type Ia light curves and cosmology sample.
+homepage: https://des-sn-dr.readthedocs.io/
+api_or_download:
+  - https://des-sn-dr.readthedocs.io/
+references:
+  - label: DES-SN 5YR data-release documentation
+    url: https://des-sn-dr.readthedocs.io/
+status: candidate
+provenance:
+  authority: DES Collaboration
+  accessed: "2026-04-15"
+  license_or_terms: Check data-release terms before storing normalized artifacts.
+data_products:
+  - griz light curves
+  - photometric classification products
+  - cosmology sample metadata
+known_caveats:
+  - Photometric classification and selection effects are central to validation use.
+  - Difference-imaging and scene-modeling products have distinct quality properties.
+next_actions:
+  - Inventory downloadable tables and define the light-curve normalization path.
+  - Capture selection cuts separately from measurement tables.

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cosmic-observables"
+version = "0.0.0"
+description = "Empirical astronomy observables for Cosmic Foundry validation"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+  "jsonschema",
+  "pyyaml",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

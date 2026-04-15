@@ -1,0 +1,28 @@
+id: wiserep
+title: Weizmann Interactive Supernova Data Repository
+kind: archive
+domain: [transients, sne-ia, spectra]
+role: Community archive for supernova spectra, photometry, and related files.
+homepage: https://www.wiserep.org/
+api_or_download:
+  - https://www.wiserep.org/search/spectra
+  - https://www.wiserep.org/search/objects
+references:
+  - label: WISeREP paper
+    url: https://weizmann.elsevierpure.com/en/publications/wiserep-an-interactive-supernova-data-repository/
+status: planned
+provenance:
+  authority: WISeREP
+  accessed: "2026-04-15"
+  license_or_terms: Preserve contributor attribution and archive terms for downloaded files.
+data_products:
+  - spectra
+  - photometry
+  - object metadata
+  - related files
+known_caveats:
+  - Spectrum availability is heterogeneous across object, phase, wavelength, and publication.
+  - Reduction, calibration, and telluric-treatment metadata may vary by uploaded file.
+next_actions:
+  - Add a metadata-only availability adapter before bulk spectral downloads.
+  - Define spectrum normalization fields compatible with IVOA and specutils conventions.

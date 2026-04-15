@@ -1,0 +1,26 @@
+id: csp-dr3
+title: Carnegie Supernova Project Type Ia photometry DR3
+kind: survey-release
+domain: [sne-ia, photometry, low-redshift, calibration]
+role: High-quality optical and near-infrared low-redshift Type Ia photometry.
+homepage: https://csp.obs.carnegiescience.edu/data
+api_or_download:
+  - https://csp.obs.carnegiescience.edu/data
+references:
+  - label: CSP DR3 release note
+    url: https://csp.obs.carnegiescience.edu/news-items/csp-dr3-photometry-released
+status: candidate
+provenance:
+  authority: Carnegie Supernova Project
+  accessed: "2026-04-15"
+  license_or_terms: Check CSP data citation and redistribution terms.
+data_products:
+  - optical photometry
+  - near-infrared photometry
+  - uncertainty estimates
+known_caveats:
+  - Filter-system and calibration metadata must be preserved for model comparison.
+  - Earlier CSP releases and final DR3 products may need explicit version separation.
+next_actions:
+  - Define CSP filter metadata and zero-point provenance.
+  - Select a small nearby-calibrator fixture set.

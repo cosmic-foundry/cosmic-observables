@@ -1,0 +1,25 @@
+id: cfa
+title: CfA Supernova Archive and CfA Type Ia releases
+kind: survey-release
+domain: [sne-ia, photometry, spectra, low-redshift]
+role: Historical low-redshift light-curve and spectral reference data.
+homepage: https://lweb.cfa.harvard.edu/supernova/SNarchive.html
+api_or_download:
+  - https://lweb.cfa.harvard.edu/supernova/SNarchive.html
+references:
+  - label: CfA Supernova Archive
+    url: https://lweb.cfa.harvard.edu/supernova/SNarchive.html
+status: candidate
+provenance:
+  authority: Center for Astrophysics supernova archive
+  accessed: "2026-04-15"
+  license_or_terms: Check archive and publication terms before redistribution.
+data_products:
+  - light curves
+  - spectra
+  - publication-specific tables
+known_caveats:
+  - Legacy formats and calibration conventions may vary across CfA releases.
+next_actions:
+  - Split source manifests by release once ingestion begins.
+  - Identify canonical tables for CfA3, CfA4, and spectral releases.
