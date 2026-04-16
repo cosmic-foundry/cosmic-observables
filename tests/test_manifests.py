@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG_DIR = ROOT / "observables" / "sne-ia" / "catalogs"
 OBJECT_DIR = ROOT / "observables" / "sne-ia" / "objects"
 VALIDATION_SET_DIR = ROOT / "observables" / "sne-ia" / "validation-sets"
+LITERATURE_SENTINEL = "literature"
 
 
 def _load_schema(name: str) -> dict:
@@ -54,6 +55,22 @@ def _valid_artifact_provenance_manifest() -> dict:
     }
 
 
+def _catalog_ids() -> set[str]:
+    return {path.stem for path in CATALOG_DIR.glob("*.yaml")}
+
+
+def _validation_set_ids() -> set[str]:
+    return {path.stem for path in VALIDATION_SET_DIR.glob("*.yaml")}
+
+
+def _provenance_paths() -> list[Path]:
+    return sorted(
+        path
+        for path in ROOT.rglob("*.provenance.yaml")
+        if ".git" not in path.parts
+    )
+
+
 def test_catalog_manifests_match_schema() -> None:
     schema = _load_schema("catalog.schema.json")
     validator = Draft202012Validator(
@@ -85,7 +102,7 @@ def test_object_manifests_match_schema() -> None:
 
 
 def test_object_alias_catalogs_exist() -> None:
-    catalog_ids = {path.stem for path in CATALOG_DIR.glob("*.yaml")}
+    catalog_ids = _catalog_ids()
     assert catalog_ids
 
     for path in sorted(OBJECT_DIR.glob("*.yaml")):
@@ -95,6 +112,46 @@ def test_object_alias_catalogs_exist() -> None:
                 f"{path.name}: alias id '{alias['id']}' references "
                 f"unknown catalog '{alias['catalog']}'"
             )
+
+
+def test_object_provenance_catalogs_exist_or_are_literature() -> None:
+    allowed_sources = _catalog_ids() | {LITERATURE_SENTINEL}
+    assert allowed_sources
+
+    for path in sorted(OBJECT_DIR.glob("*.yaml")):
+        manifest = _load_yaml(path)
+        references = {
+            "coordinates.source": manifest["coordinates"]["source"],
+            "redshift.catalog": manifest["redshift"]["catalog"],
+            "classification.catalog": manifest["classification"]["catalog"],
+        }
+        if "host_galaxy" in manifest and "catalog" in manifest["host_galaxy"]:
+            references["host_galaxy.catalog"] = manifest["host_galaxy"]["catalog"]
+
+        for field, value in references.items():
+            assert value in allowed_sources, (
+                f"{path.name}: {field} references unknown provenance source "
+                f"'{value}'"
+            )
+
+
+def test_manifest_ids_are_unique_across_manifest_types() -> None:
+    seen: dict[str, Path] = {}
+    manifest_paths = [
+        *CATALOG_DIR.glob("*.yaml"),
+        *OBJECT_DIR.glob("*.yaml"),
+        *VALIDATION_SET_DIR.glob("*.yaml"),
+    ]
+    assert manifest_paths
+
+    for path in sorted(manifest_paths):
+        manifest = _load_yaml(path)
+        manifest_id = manifest["id"]
+        assert manifest_id not in seen, (
+            f"{path}: duplicate manifest id '{manifest_id}' already used by "
+            f"{seen[manifest_id]}"
+        )
+        seen[manifest_id] = path
 
 
 def test_validation_set_manifests_match_schema() -> None:
@@ -109,10 +166,11 @@ def test_validation_set_manifests_match_schema() -> None:
     for path in paths:
         manifest = _load_yaml(path)
         validator.validate(manifest)
+        assert manifest["id"] == path.stem
 
 
 def test_validation_sets_reference_existing_catalogs() -> None:
-    catalog_ids = {path.stem for path in CATALOG_DIR.glob("*.yaml")}
+    catalog_ids = _catalog_ids()
     assert catalog_ids
 
     for path in sorted(VALIDATION_SET_DIR.glob("*.yaml")):
@@ -129,13 +187,29 @@ def test_validation_set_build_plan_paths_exist() -> None:
             assert resolved.is_file(), f"{path} references missing path: {planned_path}"
 
 
+def test_adapter_ready_validation_sets_use_release_pinned_catalogs() -> None:
+    catalogs = {path.stem: _load_yaml(path) for path in CATALOG_DIR.glob("*.yaml")}
+    assert catalogs
+
+    for path in sorted(VALIDATION_SET_DIR.glob("*.yaml")):
+        manifest = _load_yaml(path)
+        if manifest["status"] not in {"implementing", "available"}:
+            continue
+
+        for catalog_id in manifest["upstream_catalogs"]:
+            assert "release" in catalogs[catalog_id], (
+                f"{path.name}: adapter-ready validation set references "
+                f"catalog '{catalog_id}' without a release pin"
+            )
+
+
 def test_available_validation_sets_reject_source_native_units() -> None:
     schema = _load_schema("validation-set.schema.json")
     validator = Draft202012Validator(
         schema,
         format_checker=Draft202012Validator.FORMAT_CHECKER,
     )
-    manifest = _load_yaml(VALIDATION_SET_DIR / "nearby-calibrators.yaml")
+    manifest = _load_yaml(VALIDATION_SET_DIR / "sne-ia-nearby-calibrators.yaml")
     manifest["status"] = "available"
 
     with pytest.raises(ValidationError):
@@ -200,3 +274,41 @@ def test_artifact_provenance_schema_rejects_ambiguous_artifacts(
 
     with pytest.raises(ValidationError):
         validator.validate(manifest)
+
+
+def test_artifact_provenance_sidecars_match_schema() -> None:
+    schema = _load_schema("artifact-provenance.schema.json")
+    validator = Draft202012Validator(
+        schema,
+        format_checker=Draft202012Validator.FORMAT_CHECKER,
+    )
+
+    for path in _provenance_paths():
+        manifest = _load_yaml(path)
+        validator.validate(manifest)
+
+
+def test_artifact_provenance_sidecars_reference_existing_manifests() -> None:
+    catalog_ids = _catalog_ids()
+    validation_set_ids = _validation_set_ids()
+
+    for path in _provenance_paths():
+        manifest = _load_yaml(path)
+        assert manifest["validation_set_id"] in validation_set_ids, (
+            f"{path}: references unknown validation set "
+            f"'{manifest['validation_set_id']}'"
+        )
+        assert manifest["upstream"]["catalog"] in catalog_ids, (
+            f"{path}: references unknown upstream catalog "
+            f"'{manifest['upstream']['catalog']}'"
+        )
+
+
+def test_artifact_provenance_sidecars_reference_existing_adapter_scripts() -> None:
+    for path in _provenance_paths():
+        manifest = _load_yaml(path)
+        adapter_path = ROOT / manifest["adapter"]["script"]
+        assert adapter_path.is_file(), (
+            f"{path}: references missing adapter script "
+            f"{manifest['adapter']['script']}"
+        )

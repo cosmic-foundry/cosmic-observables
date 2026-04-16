@@ -289,12 +289,8 @@ Exit criteria:
 
 ## Near-term issue backlog
 
-- Add CI for `pytest`.
-- Add schema validation for duplicate IDs across all manifest types.
 - Add catalog license / terms fields with structured status instead of
   free text.
-- Add a first object-identity schema and a 10-object canonical Type Ia
-  fixture set.
 - Choose the first Pantheon+ adapter strategy and pin exact upstream
   release inputs. Add a `release` field to the Pantheon+ catalog
   manifest before building the adapter — the current `provenance.accessed`
@@ -309,14 +305,14 @@ Exit criteria:
 These decisions are explicitly deferred and must be resolved before
 the phase that first requires them.
 
-### Units policy (required before Phase 2)
+### Source-native unit resolution (required before affected artifacts)
 
-Several observables carry `unit: source-native` as an accepted
-placeholder. Phase 1 data-model hardening must define an explicit units
-policy before Phase 2 adapter work produces normalized artifacts.
-Until then, `source-native` signals a known gap, not a resolved unit.
-Phase 2 work on any catalog that uses `source-native` observables is
-gated on Phase 1 delivering a units decision for that observable type.
+ADR-0002 defines the base unit vocabulary and the schema rejects
+`source-native` units on validation sets marked `available`.
+`source-native` remains an accepted placeholder for proposed work, but
+any adapter output that exposes one of those observables must resolve
+the unit or amend the enum before the artifact can be marked
+available.
 
 ### Comparison-result schema (required before stellar-foundry first comparison)
 

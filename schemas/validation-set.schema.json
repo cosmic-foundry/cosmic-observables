@@ -85,7 +85,7 @@
     "build_plan": {
       "type": "object",
       "additionalProperties": false,
-      "$comment": "Planning record for how this validation set will be built. This is NOT artifact provenance. A separate artifact_provenance concept — carrying content hashes, adapter script references, upstream release pins, and generation dates — will be added in Phase 1 data-model hardening. Until then, build_plan records intent, not reproducibility.",
+      "$comment": "Planning record for how this validation set will be built. This is NOT artifact provenance. Artifact provenance lives in sidecar YAML records carrying content hashes, adapter script references, upstream release pins, and generation dates. build_plan records intent, not reproducibility.",
       "required": ["planned_from", "requires_rebuild"],
       "properties": {
         "planned_from": {
