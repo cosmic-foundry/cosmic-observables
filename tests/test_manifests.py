@@ -3,11 +3,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import yaml
 import pytest
+import yaml
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
-
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_DIR = ROOT / "observables" / "sne-ia" / "catalogs"

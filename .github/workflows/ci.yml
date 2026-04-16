@@ -11,6 +11,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install package
+        run: pip install -e .[dev]
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: Run pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -21,4 +37,10 @@ jobs:
       - name: Install package
         run: pip install -e .[test]
       - name: Run pytest
-        run: pytest -q
+        shell: bash
+        run: |
+          if [ -d tests ] && find tests -type f -name 'test*.py' | grep -q .; then
+            pytest -q
+          else
+            echo "No pytest tests found; skipping."
+          fi
