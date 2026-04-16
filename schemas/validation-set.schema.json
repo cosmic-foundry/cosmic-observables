@@ -65,7 +65,7 @@
             "type": "string",
             "enum": [
               "mag",
-              "mag^2",
+              "mag2",
               "erg/s/cm2/Angstrom",
               "relative",
               "Angstrom",
@@ -106,6 +106,22 @@
     "next_actions": {
       "type": "array",
       "items": { "type": "string" }
+    }
+  },
+  "if": {
+    "properties": { "status": { "const": "available" } },
+    "required": ["status"]
+  },
+  "then": {
+    "properties": {
+      "observables": {
+        "items": {
+          "not": {
+            "properties": { "unit": { "const": "source-native" } },
+            "required": ["unit"]
+          }
+        }
+      }
     }
   }
 }

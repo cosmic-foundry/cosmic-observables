@@ -331,12 +331,11 @@ outputs and the human explorer (Phase 6) can display them uniformly.
 This decision should be recorded as an ADR before the first comparison
 is implemented in any domain repository.
 
-### Artifact provenance model (required before Phase 2)
+### Artifact provenance sidecars (required before Phase 2 artifacts)
 
-The `build_plan` on validation sets is a planning record only. It
-records which catalog manifests a validation set will be built from,
-but carries no content hashes, adapter script references, or upstream
-release pins. Phase 1 data-model hardening must define the artifact
-provenance concept — a separate schema capturing the full reproducible
-record of how an artifact was produced — before Phase 2 builds the
-first real adapter output.
+ADR-0002 defines artifact provenance as a sidecar YAML record rather
+than as fields embedded in validation-set manifests. The `build_plan`
+on validation sets remains a planning record only; adapter outputs
+must write sidecars with adapter identity, upstream release pins,
+content hashes, artifact path, and row count before any Phase 2
+artifact is marked available.
