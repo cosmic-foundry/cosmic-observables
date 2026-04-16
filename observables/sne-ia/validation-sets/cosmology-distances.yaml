@@ -18,7 +18,7 @@ observables:
     unit: dimensionless
     description: Redshift field used by the published cosmology analysis.
   - name: covariance
-    unit: mag^2
+    unit: mag2
     description: Published covariance matrix for distance-modulus comparisons.
 build_plan:
   planned_from:
