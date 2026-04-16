@@ -23,5 +23,6 @@ known_caveats:
   - Cosmology products encode cross-survey calibration and analysis choices.
   - Raw photometry should be traced back to component surveys where needed.
 next_actions:
+  - Record release tag or commit hash before building the first adapter.
   - Build the first validation-set adapter from the public data release.
   - Record row counts, covariance shape, and known reference cosmology checks.

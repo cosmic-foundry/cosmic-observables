@@ -1,9 +1,9 @@
 id: sne-ia-spectral-velocity-benchmarks
 title: Type Ia spectral velocity and feature-evolution benchmarks
-domain: [sne-ia, spectra]
+domain: [sne-ia, spectroscopy]
 status: proposed
 science_question: Can synthetic spectra reproduce observed Type Ia line velocities and feature evolution across phase?
-upstream_sources:
+upstream_catalogs:
   - wiserep
   - tns
 selection:
@@ -25,14 +25,14 @@ observables:
   - name: phase
     unit: day
     description: Phase relative to maximum light where available or derived.
-provenance:
-  created_from:
-    - observables/sne-ia/sources/wiserep.yaml
-    - observables/sne-ia/sources/tns.yaml
+build_plan:
+  planned_from:
+    - observables/sne-ia/catalogs/wiserep.yaml
+    - observables/sne-ia/catalogs/tns.yaml
   requires_rebuild: true
 caveats:
   - Spectra may not be absolutely flux calibrated.
-  - Telluric correction, dereddening, and host subtraction vary across sources.
+  - Telluric correction, dereddening, and host subtraction vary across catalogs.
 next_actions:
   - Implement a metadata-only WISeREP availability index.
   - Define feature-measurement methods before publishing derived velocities.

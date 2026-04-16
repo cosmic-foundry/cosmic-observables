@@ -291,13 +291,52 @@ Exit criteria:
 
 - Add CI for `pytest`.
 - Add schema validation for duplicate IDs across all manifest types.
-- Add source license / terms fields with structured status instead of
+- Add catalog license / terms fields with structured status instead of
   free text.
 - Add a first object-identity schema and a 10-object canonical Type Ia
   fixture set.
 - Choose the first Pantheon+ adapter strategy and pin exact upstream
-  release inputs.
+  release inputs. Add a `release` field to the Pantheon+ catalog
+  manifest before building the adapter — the current `provenance.accessed`
+  date is not a release pin.
 - Decide whether docs should use Sphinx/MyST, MkDocs, or a lighter
   static generator.
 - Add a manifest changelog convention so observational fact updates
   are easy to review.
+
+## Known deferred decisions (tracked risks)
+
+These decisions are explicitly deferred and must be resolved before
+the phase that first requires them.
+
+### Units policy (required before Phase 2)
+
+Several observables carry `unit: source-native` as an accepted
+placeholder. Phase 1 data-model hardening must define an explicit units
+policy before Phase 2 adapter work produces normalized artifacts.
+Until then, `source-native` signals a known gap, not a resolved unit.
+Phase 2 work on any catalog that uses `source-native` observables is
+gated on Phase 1 delivering a units decision for that observable type.
+
+### Comparison-result schema (required before stellar-foundry first comparison)
+
+When a domain repository (e.g., `stellar-foundry`) runs a simulation
+comparison against a validation product, the output format must be
+defined before implementation begins. The comparison-result schema —
+carrying simulation run ID, validation-product ID, metric, value,
+units, tolerance, covariance handling, and provenance — should live in
+`cosmic-observables` as the empirical side of the contract. This
+ensures all domain repositories produce interoperable comparison
+outputs and the human explorer (Phase 6) can display them uniformly.
+This decision should be recorded as an ADR before the first comparison
+is implemented in any domain repository.
+
+### Artifact provenance model (required before Phase 2)
+
+The `build_plan` on validation sets is a planning record only. It
+records which catalog manifests a validation set will be built from,
+but carries no content hashes, adapter script references, or upstream
+release pins. Phase 1 data-model hardening must define the artifact
+provenance concept — a separate schema capturing the full reproducible
+record of how an artifact was produced — before Phase 2 builds the
+first real adapter output.

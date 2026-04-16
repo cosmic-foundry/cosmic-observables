@@ -3,7 +3,7 @@
 Type Ia observational data is distributed across identity services,
 spectral archives, survey releases, historical literature tables, and
 cosmology compilations. This repository starts by representing those
-products as source manifests and validation-set definitions.
+products as catalog manifests and validation-set definitions.
 
 ## Working model
 
