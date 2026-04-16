@@ -4,27 +4,49 @@ These instructions apply to all AI agents working in this repository.
 
 ## Development rules
 
-- Work on topic branches and land changes via pull request.
-- Keep commits small and logically scoped.
-- Do not commit API keys, tokens, or credentials.
-- Do not include local absolute filesystem paths in commit messages,
-  pull request titles, pull request descriptions, ADRs, or persistent
-  metadata.
-- When changing observational facts, cite the upstream source in the
-  changed file.
-- Do not hand-edit normalized data products. Add or update a scripted
-  adapter instead.
+Branch, PR, commit-size, history, and attribution discipline is
+identical to `cosmic-foundry/cosmic-foundry`. Read `AI.md` in that
+repository at the start of every session — it is the authoritative
+source. The notes below cover only the details that differ for this
+repository.
+
+### Fork and upstream remotes
+
+- Upstream repository: `cosmic-foundry/cosmic-observables`
+- Fork (push target): `cosmic-foundry-development/cosmic-observables`
+
+Open pull requests against the upstream:
+
+```bash
+gh pr create \
+  --repo cosmic-foundry/cosmic-observables \
+  --base main \
+  --head cosmic-foundry-development:<topic-branch>
+```
+
+Do not rely on `gh`'s default-repo inference — state it explicitly,
+as directed in `cosmic-foundry/cosmic-foundry` AI.md.
+
+### Environment
+
+This repository has no compiled or GPU dependencies. CI uses
+`pip install -e .[test]` with Python 3.11. No conda environment is
+required for CI, and there is no `agent_health_check.sh` here. For
+local development, any environment with `jsonschema`, `pyyaml`, and
+`pytest` is sufficient — the `cosmic_foundry` conda environment from
+`cosmic-foundry/cosmic-foundry` provides a superset of these and
+works fine if it is already active.
 
 ## Data rules
 
 - Treat upstream archives and survey releases as authoritative for
-  their own products. This repository records source metadata,
+  their own products. This repository records catalog metadata,
   provenance, schemas, manifests, and derived validation products.
 - Record source licensing or access terms before adding generated
   artifacts.
 - Every validation set must state:
   - the scientific question it validates,
-  - the upstream sources it depends on,
+  - the upstream catalogs it depends on,
   - the selection cuts or quality cuts applied,
   - the observables and units exposed to simulations,
   - known caveats and open questions.
