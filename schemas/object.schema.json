@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cosmic-foundry.github.io/cosmic-observables/schemas/object.schema.json",
+  "title": "Astronomical object manifest",
+  "$comment": "An 'object' is a physical transient event — for now, a Type Ia supernova — identified by a repo-internal slug ID and described by coordinates, redshift, classification, and cross-catalog alias records. Aliases carry match_type evidence (how we know two catalog IDs refer to the same event) rather than asserting matches silently. See ADR-0002.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "domain",
+    "coordinates",
+    "redshift",
+    "classification",
+    "aliases"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "description": "Repo-internal slug identifier matching the manifest filename stem. Derived from the well-known historical name (e.g. sn-2011fe). Not the TNS name — see tns_name."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name as it appears in the literature (e.g. 'SN 2011fe')."
+    },
+    "domain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["sne-ia", "transients", "cosmology", "photometry", "spectroscopy"]
+      },
+      "minItems": 1,
+      "description": "Astrophysical domain tags. Must use values from the authoritative enum."
+    },
+    "tns_name": {
+      "type": ["string", "null"],
+      "description": "TNS AT/SN designation if one exists. Null for pre-2016 objects where TNS coverage is absent or retroactive and incomplete. This is not the canonical ID — the repo-internal slug is."
+    },
+    "coordinates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ra", "dec", "source"],
+      "description": "Working coordinates for this object. Phase 1 records one set of coordinates with a named source. Disagreements across catalogs are a Phase 3 concern.",
+      "properties": {
+        "ra": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Right ascension in decimal degrees, J2000."
+        },
+        "dec": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Declination in decimal degrees, J2000."
+        },
+        "source": {
+          "type": "string",
+          "description": "Which data source provided these coordinates. Use a catalog manifest ID where available, or 'literature' for pre-TNS objects sourced from published discovery reports."
+        }
+      }
+    },
+    "redshift": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source_type", "catalog"],
+      "description": "Working redshift. Phase 1 records one value with source type and catalog. Multiple reported redshifts for the same object are a Phase 3 concern.",
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Redshift z."
+        },
+        "source_type": {
+          "type": "string",
+          "enum": ["host-galaxy-spectrum", "sn-spectrum", "photometric", "literature"],
+          "description": "How the redshift was measured. 'literature' for values adopted from a published compilation without a clear original measurement type."
+        },
+        "catalog": {
+          "type": "string",
+          "description": "Catalog manifest ID or 'literature' for the source of this redshift measurement."
+        }
+      }
+    },
+    "host_galaxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "description": "Host galaxy association. Optional in schema; expected for all fixture-set objects.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Common name or designation of the host galaxy."
+        },
+        "catalog": {
+          "type": "string",
+          "description": "Catalog manifest ID or 'literature' for the source of this association."
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "confidence", "catalog"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["sne-ia"],
+          "$comment": "Extend this enum as new domains are added to the registry.",
+          "description": "Transient class."
+        },
+        "subtype": {
+          "type": "string",
+          "description": "Subtype within the class (e.g. 'normal', '91bg-like', '91T-like', 'broad-lined'). Free string; the vocabulary is still evolving in the literature."
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["secure", "probable", "uncertain"],
+          "description": "Classification confidence. 'secure' requires spectroscopic confirmation."
+        },
+        "catalog": {
+          "type": "string",
+          "description": "Catalog manifest ID or 'literature' for the source of this classification."
+        }
+      }
+    },
+    "first_observed": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of first reported detection. Optional; may be approximate for historical objects."
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Cross-catalog ID records. Each entry is evidence that a catalog's internal identifier refers to this object. match_type records how the correspondence was established.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "catalog", "match_type"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier for this object as it appears in the named catalog."
+          },
+          "catalog": {
+            "type": "string",
+            "description": "Catalog manifest ID. Must resolve to a file in observables/*/catalogs/."
+          },
+          "match_type": {
+            "type": "string",
+            "enum": ["name", "coordinate", "name-and-coordinate", "manual"],
+            "description": "How the correspondence was established. 'manual' requires a notes entry explaining the basis."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Required when match_type is 'manual'. Explain the basis for asserting this correspondence."
+          }
+        },
+        "if": {
+          "properties": { "match_type": { "const": "manual" } }
+        },
+        "then": {
+          "required": ["notes"]
+        }
+      }
+    }
+  }
+}

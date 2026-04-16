@@ -1,0 +1,31 @@
+id: sn-2009ig
+name: SN 2009ig
+domain: [sne-ia]
+tns_name: null
+coordinates:
+  ra: 39.6340
+  dec: -1.3493
+  source: literature
+redshift:
+  value: 0.00876
+  source_type: host-galaxy-spectrum
+  catalog: literature
+host_galaxy:
+  name: NGC 1015
+  catalog: literature
+classification:
+  type: sne-ia
+  subtype: normal
+  confidence: secure
+  catalog: literature
+first_observed: "2009-08-20"
+aliases:
+  - id: SN 2009ig
+    catalog: wiserep
+    match_type: name
+  - id: SN 2009ig
+    catalog: csp-dr3
+    match_type: name
+  - id: SN 2009ig
+    catalog: pantheon-plus
+    match_type: name

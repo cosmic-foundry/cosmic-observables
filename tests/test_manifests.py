@@ -9,6 +9,7 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_DIR = ROOT / "observables" / "sne-ia" / "catalogs"
+OBJECT_DIR = ROOT / "observables" / "sne-ia" / "objects"
 VALIDATION_SET_DIR = ROOT / "observables" / "sne-ia" / "validation-sets"
 
 
@@ -35,6 +36,34 @@ def test_catalog_manifests_match_schema() -> None:
         manifest = _load_yaml(path)
         validator.validate(manifest)
         assert manifest["id"] == path.stem
+
+
+def test_object_manifests_match_schema() -> None:
+    schema = _load_schema("object.schema.json")
+    validator = Draft202012Validator(
+        schema,
+        format_checker=Draft202012Validator.FORMAT_CHECKER,
+    )
+    paths = sorted(OBJECT_DIR.glob("*.yaml"))
+    assert paths
+
+    for path in paths:
+        manifest = _load_yaml(path)
+        validator.validate(manifest)
+        assert manifest["id"] == path.stem
+
+
+def test_object_alias_catalogs_exist() -> None:
+    catalog_ids = {path.stem for path in CATALOG_DIR.glob("*.yaml")}
+    assert catalog_ids
+
+    for path in sorted(OBJECT_DIR.glob("*.yaml")):
+        manifest = _load_yaml(path)
+        for alias in manifest.get("aliases", []):
+            assert alias["catalog"] in catalog_ids, (
+                f"{path.name}: alias id '{alias['id']}' references "
+                f"unknown catalog '{alias['catalog']}'"
+            )
 
 
 def test_validation_set_manifests_match_schema() -> None:

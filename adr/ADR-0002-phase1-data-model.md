@@ -1,6 +1,6 @@
 # ADR-0002 — Phase 1 data model: object identity, units, and artifact provenance
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-04-16
 
 ## Context
