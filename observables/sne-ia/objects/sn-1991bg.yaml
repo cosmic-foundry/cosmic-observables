@@ -1,0 +1,28 @@
+id: sn-1991bg
+name: SN 1991bg
+domain: [sne-ia]
+tns_name: null
+coordinates:
+  ra: 186.2649
+  dec: 12.8869
+  source: literature
+redshift:
+  value: 0.00355
+  source_type: host-galaxy-spectrum
+  catalog: literature
+host_galaxy:
+  name: NGC 4374 (M84)
+  catalog: literature
+classification:
+  type: sne-ia
+  subtype: 91bg-like
+  confidence: secure
+  catalog: literature
+first_observed: "1991-12-09"
+aliases:
+  - id: SN 1991bg
+    catalog: wiserep
+    match_type: name
+  - id: SN 1991bg
+    catalog: cfa
+    match_type: name

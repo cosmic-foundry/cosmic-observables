@@ -63,8 +63,19 @@
           "name": { "type": "string" },
           "unit": {
             "type": "string",
-            "$comment": "The value 'source-native' is an accepted placeholder for observables whose units depend on the upstream calibration system and have not yet been normalized. Phase 1 data-model hardening will define an explicit units policy; until then, 'source-native' signals a known deferral, not a resolved unit.",
-            "description": "Unit for this observable. Use standard strings (e.g. 'mag', 'km/s', 'Angstrom', 'day', 'dimensionless', 'mag^2'). Use 'source-native' only as a placeholder when the unit cannot be stated without first implementing the Phase 1 units policy."
+            "enum": [
+              "mag",
+              "mag^2",
+              "erg/s/cm2/Angstrom",
+              "relative",
+              "Angstrom",
+              "km/s",
+              "day",
+              "dimensionless",
+              "source-native"
+            ],
+            "$comment": "'source-native' is an accepted deferral for observables whose units depend on the upstream calibration system and have not yet been normalized. It must not appear on any observable in a validation set with status 'available'. Phase 2 adapter work on source-native observables is gated on resolving the unit and adding it to this enum. See ADR-0002.",
+            "description": "Unit for this observable. Must be one of the values in the enum. Use 'source-native' only as a placeholder when the unit requires a Phase 1 units-policy decision to resolve."
           },
           "description": { "type": "string" }
         }
