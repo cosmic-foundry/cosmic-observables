@@ -1,7 +1,7 @@
 id: wiserep
 title: Weizmann Interactive Supernova Data Repository
 kind: archive
-domain: [transients, sne-ia, spectra]
+domain: [transients, sne-ia, spectroscopy]
 role: Community archive for supernova spectra, photometry, and related files.
 homepage: https://www.wiserep.org/
 api_or_download:

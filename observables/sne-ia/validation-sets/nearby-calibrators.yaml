@@ -1,9 +1,9 @@
 id: sne-ia-nearby-calibrators
 title: Nearby Type Ia calibration-quality light curves
-domain: [sne-ia, photometry, low-redshift]
+domain: [sne-ia, photometry]
 status: proposed
 science_question: Can synthetic Type Ia light curves reproduce nearby multi-band color and luminosity evolution in well-calibrated low-redshift samples?
-upstream_sources:
+upstream_catalogs:
   - csp-dr3
   - foundation
   - cfa
@@ -14,27 +14,27 @@ selection:
   cuts:
     - Prefer spectroscopically classified normal Type Ia events for the first fixture set.
     - Preserve source-native quality flags and sample-membership labels.
-    - Record filter passbands and zeropoint provenance before combining sources.
+    - Record filter passbands and zeropoint provenance before combining catalogs.
 observables:
   - name: apparent_magnitude
     unit: mag
     description: Observed light-curve point in a named filter system.
   - name: flux
     unit: source-native
-    description: Flux value when the upstream source provides calibrated fluxes.
+    description: Flux value when the upstream catalog provides calibrated fluxes.
   - name: phase
     unit: day
     description: Rest-frame or observer-frame phase, with frame recorded in product metadata.
   - name: color
     unit: mag
     description: Derived color index for source-approved filter pairs.
-provenance:
-  created_from:
-    - observables/sne-ia/sources/csp-dr3.yaml
-    - observables/sne-ia/sources/foundation.yaml
-    - observables/sne-ia/sources/cfa.yaml
-    - observables/sne-ia/sources/cnia002.yaml
-    - observables/sne-ia/sources/tns.yaml
+build_plan:
+  planned_from:
+    - observables/sne-ia/catalogs/csp-dr3.yaml
+    - observables/sne-ia/catalogs/foundation.yaml
+    - observables/sne-ia/catalogs/cfa.yaml
+    - observables/sne-ia/catalogs/cnia002.yaml
+    - observables/sne-ia/catalogs/tns.yaml
   requires_rebuild: true
 caveats:
   - Cross-survey calibration should not be inferred silently.

@@ -29,11 +29,11 @@ observables, galaxy surveys, and cosmology validation products.
 ## Initial scope: Type Ia supernovae
 
 The Type Ia seed scope is organized around the sources in
-[`observables/sne-ia/sources`](observables/sne-ia/sources) and the
+[`observables/sne-ia/catalogs`](observables/sne-ia/catalogs) and the
 validation products in
 [`observables/sne-ia/validation-sets`](observables/sne-ia/validation-sets).
 
-The initial source inventory covers:
+The initial catalog inventory covers:
 
 - TNS for transient identity, naming, coordinates, classifications,
   and discovery / classification reports.
@@ -56,7 +56,7 @@ adr/                         Architectural decisions for this repo.
 schemas/                     JSON Schemas for evidence metadata.
 observables/
   sne-ia/
-    sources/                 One manifest per upstream source.
+    catalogs/                One manifest per upstream data catalog.
     validation-sets/         Simulation-facing validation products.
 docs/                        Human-facing notes and explorer content.
 src/cosmic_observables/      Future library code.

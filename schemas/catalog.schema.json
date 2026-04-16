@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cosmic-foundry.github.io/cosmic-observables/schemas/catalog.schema.json",
+  "title": "Upstream data catalog manifest",
+  "$comment": "A 'catalog' is an upstream data resource — an archive, survey release, compilation, or bibliographic service — that this repository draws from. The term 'catalog' is used rather than 'source' to avoid collision with the standard astronomy meaning of 'source' as an astronomical object. Object-identity schemas will be introduced in Phase 1 and will use 'object' or 'transient', not 'source'.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "kind",
+    "domain",
+    "role",
+    "homepage",
+    "status",
+    "provenance",
+    "data_products",
+    "known_caveats",
+    "next_actions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "description": "Stable lowercase identifier matching the manifest filename stem."
+    },
+    "title": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": ["archive", "survey-release", "compilation", "bibliographic-service"]
+    },
+    "domain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["sne-ia", "transients", "cosmology", "photometry", "spectroscopy"],
+        "$comment": "This enum is the authoritative domain vocabulary. Add values here when introducing a new astrophysical domain — do not introduce new values in individual manifests."
+      },
+      "minItems": 1,
+      "description": "Astrophysical domain tags. Values must come from the enum above. Selection qualifiers such as 'low-redshift', 'volume-limited', and 'calibration' are not domain tags — record them in the manifest role or in selection cuts on validation sets."
+    },
+    "role": {
+      "type": "string",
+      "description": "One-sentence description of this catalog's role in the evidence registry."
+    },
+    "homepage": { "type": "string", "format": "uri" },
+    "release": {
+      "type": "string",
+      "description": "Data release identifier as used by the upstream authority (e.g. 'DR3', 'v2.0', 'SN5YR'). Required before any adapter is built for this catalog; optional at the candidate and planned stages."
+    },
+    "api_or_download": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "url"],
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "bibcode": { "type": "string" },
+          "doi": { "type": "string" }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["candidate", "planned", "ingesting", "available", "deprecated"]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "$comment": "Records who is authoritative for this data, when it was accessed, and what the license or terms are. This is not artifact provenance — content hashes, adapter scripts, and upstream release pins are part of the validation-set build_plan and will be formalized in Phase 1.",
+      "required": ["authority", "accessed", "license_or_terms"],
+      "properties": {
+        "authority": { "type": "string" },
+        "accessed": { "type": "string", "format": "date" },
+        "license_or_terms": { "type": "string" }
+      }
+    },
+    "data_products": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "known_caveats": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 id: ztf-dr1
 title: Zwicky Transient Facility Type Ia supernova survey DR1
 kind: survey-release
-domain: [sne-ia, photometry, low-redshift]
+domain: [sne-ia, photometry]
 role: Untargeted low-redshift Type Ia light-curve sample.
 homepage: https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/510/2228
 api_or_download:

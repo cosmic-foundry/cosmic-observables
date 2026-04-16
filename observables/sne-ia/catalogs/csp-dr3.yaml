@@ -1,8 +1,8 @@
 id: csp-dr3
 title: Carnegie Supernova Project Type Ia photometry DR3
 kind: survey-release
-domain: [sne-ia, photometry, low-redshift, calibration]
-role: High-quality optical and near-infrared low-redshift Type Ia photometry.
+domain: [sne-ia, photometry]
+role: High-quality optical and near-infrared low-redshift Type Ia photometry for light-curve calibration.
 homepage: https://csp.obs.carnegiescience.edu/data
 api_or_download:
   - https://csp.obs.carnegiescience.edu/data

@@ -1,7 +1,7 @@
 id: cfa
 title: CfA Supernova Archive and CfA Type Ia releases
 kind: survey-release
-domain: [sne-ia, photometry, spectra, low-redshift]
+domain: [sne-ia, photometry, spectroscopy]
 role: Historical low-redshift light-curve and spectral reference data.
 homepage: https://lweb.cfa.harvard.edu/supernova/SNarchive.html
 api_or_download:
@@ -21,5 +21,5 @@ data_products:
 known_caveats:
   - Legacy formats and calibration conventions may vary across CfA releases.
 next_actions:
-  - Split source manifests by release once ingestion begins.
+  - Split catalog manifests by release once ingestion begins.
   - Identify canonical tables for CfA3, CfA4, and spectral releases.

@@ -1,7 +1,7 @@
 id: cnia002
 title: CNIa0.02 nearby Type Ia sample
 kind: survey-release
-domain: [sne-ia, photometry, low-redshift, volume-limited]
+domain: [sne-ia, photometry]
 role: Nearby volume-limited Type Ia sample for local population and calibration checks.
 homepage: https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
 api_or_download:

@@ -14,7 +14,7 @@ target is a reviewable evidence graph:
 - selection cuts and quality cuts,
 - simulation-facing validation products.
 
-## Initial source classes
+## Initial catalog classes
 
 - **Identity and classification:** TNS.
 - **Spectra and related files:** WISeREP.

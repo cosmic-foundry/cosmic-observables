@@ -10,10 +10,10 @@
     "domain",
     "status",
     "science_question",
-    "upstream_sources",
+    "upstream_catalogs",
     "selection",
     "observables",
-    "provenance",
+    "build_plan",
     "caveats",
     "next_actions"
   ],
@@ -22,18 +22,24 @@
     "title": { "type": "string" },
     "domain": {
       "type": "array",
-      "items": { "type": "string" },
-      "minItems": 1
+      "items": {
+        "type": "string",
+        "enum": ["sne-ia", "transients", "cosmology", "photometry", "spectroscopy"],
+        "$comment": "This enum is the authoritative domain vocabulary. Matches catalog.schema.json. Add values here and there together."
+      },
+      "minItems": 1,
+      "description": "Astrophysical domain tags. Must match the enum defined in catalog.schema.json. Selection qualifiers are not domain tags."
     },
     "status": {
       "type": "string",
       "enum": ["proposed", "implementing", "available", "drifted"]
     },
     "science_question": { "type": "string" },
-    "upstream_sources": {
+    "upstream_catalogs": {
       "type": "array",
       "items": { "type": "string" },
-      "minItems": 1
+      "minItems": 1,
+      "description": "IDs of the upstream catalog manifests this validation set draws from. Each value must match the id field of a manifest in observables/*/catalogs/."
     },
     "selection": {
       "type": "object",
@@ -55,22 +61,31 @@
         "required": ["name", "unit", "description"],
         "properties": {
           "name": { "type": "string" },
-          "unit": { "type": "string" },
+          "unit": {
+            "type": "string",
+            "$comment": "The value 'source-native' is an accepted placeholder for observables whose units depend on the upstream calibration system and have not yet been normalized. Phase 1 data-model hardening will define an explicit units policy; until then, 'source-native' signals a known deferral, not a resolved unit.",
+            "description": "Unit for this observable. Use standard strings (e.g. 'mag', 'km/s', 'Angstrom', 'day', 'dimensionless', 'mag^2'). Use 'source-native' only as a placeholder when the unit cannot be stated without first implementing the Phase 1 units policy."
+          },
           "description": { "type": "string" }
         }
       },
       "minItems": 1
     },
-    "provenance": {
+    "build_plan": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["created_from", "requires_rebuild"],
+      "$comment": "Planning record for how this validation set will be built. This is NOT artifact provenance. A separate artifact_provenance concept — carrying content hashes, adapter script references, upstream release pins, and generation dates — will be added in Phase 1 data-model hardening. Until then, build_plan records intent, not reproducibility.",
+      "required": ["planned_from", "requires_rebuild"],
       "properties": {
-        "created_from": {
+        "planned_from": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": { "type": "string" },
+          "description": "Repository-relative paths to the catalog manifests this validation set is planned to be built from. These are planning pointers only — they tell reviewers which upstream catalogs are relevant, not how the artifact was produced. The test suite verifies these paths resolve to existing files."
         },
-        "requires_rebuild": { "type": "boolean" }
+        "requires_rebuild": {
+          "type": "boolean",
+          "description": "True when the validation artifact does not yet exist or is known to be out of date with the planned_from sources. False when the artifact has been built and verified. This flag is set manually by the adapter author; automated rebuild detection is deferred to Phase 1."
+        }
       }
     },
     "caveats": {
