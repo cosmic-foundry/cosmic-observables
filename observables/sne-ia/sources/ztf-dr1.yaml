@@ -1,0 +1,26 @@
+id: ztf-dr1
+title: Zwicky Transient Facility Type Ia supernova survey DR1
+kind: survey-release
+domain: [sne-ia, photometry, low-redshift]
+role: Untargeted low-redshift Type Ia light-curve sample.
+homepage: https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/510/2228
+api_or_download:
+  - https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/510/2228
+references:
+  - label: ZTF Type Ia DR1 catalogue
+    url: https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/510/2228
+status: candidate
+provenance:
+  authority: ZTF collaboration / CDS VizieR catalogue
+  accessed: "2026-04-15"
+  license_or_terms: Check CDS and article citation requirements before redistribution.
+data_products:
+  - light curves
+  - spectroscopic classifications
+  - survey metadata
+known_caveats:
+  - Survey cadence and selection function matter for population comparisons.
+  - Follow-up spectra and classifications may live in separate archives.
+next_actions:
+  - Add a VizieR or CDS adapter.
+  - Cross-match object identities against TNS and WISeREP.

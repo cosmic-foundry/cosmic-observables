@@ -1,0 +1,25 @@
+id: foundation
+title: Foundation Supernova Survey
+kind: survey-release
+domain: [sne-ia, photometry, low-redshift, calibration]
+role: Low-redshift Pan-STARRS-system Type Ia light curves for cosmology calibration.
+homepage: https://academic.oup.com/mnras/article/475/1/193/4693871
+api_or_download:
+  - https://academic.oup.com/mnras/article/475/1/193/4693871
+references:
+  - label: Foundation first photometry release
+    url: https://academic.oup.com/mnras/article/475/1/193/4693871
+status: candidate
+provenance:
+  authority: Foundation Supernova Survey
+  accessed: "2026-04-15"
+  license_or_terms: Check paper data availability and journal terms before redistribution.
+data_products:
+  - griz light curves
+  - cosmology-sample membership
+  - calibration metadata
+known_caveats:
+  - The Pan-STARRS natural system and calibration choices must be explicit.
+next_actions:
+  - Locate canonical machine-readable tables.
+  - Cross-match with Pantheon+ low-redshift entries.

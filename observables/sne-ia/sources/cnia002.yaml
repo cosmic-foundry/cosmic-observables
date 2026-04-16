@@ -1,0 +1,25 @@
+id: cnia002
+title: CNIa0.02 nearby Type Ia sample
+kind: survey-release
+domain: [sne-ia, photometry, low-redshift, volume-limited]
+role: Nearby volume-limited Type Ia sample for local population and calibration checks.
+homepage: https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
+api_or_download:
+  - https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
+references:
+  - label: CNIa0.02 first data release summary
+    url: https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
+status: candidate
+provenance:
+  authority: Carnegie Science / CNIa0.02 release
+  accessed: "2026-04-15"
+  license_or_terms: Check release and paper terms before redistribution.
+data_products:
+  - nearby Type Ia light curves
+  - sample membership
+  - local-volume selection metadata
+known_caveats:
+  - Volume-limited completeness criteria must be represented separately from photometry.
+next_actions:
+  - Add source-paper citation metadata.
+  - Compare overlap with CSP, Foundation, and Pantheon+ low-redshift objects.

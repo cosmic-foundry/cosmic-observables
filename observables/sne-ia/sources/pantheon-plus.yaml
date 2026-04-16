@@ -1,0 +1,27 @@
+id: pantheon-plus
+title: Pantheon+ / SH0ES Type Ia supernova data release
+kind: compilation
+domain: [sne-ia, cosmology]
+role: Cosmology-ready standardized Type Ia distance sample and covariance reference.
+homepage: https://github.com/PantheonPlusSH0ES/DataRelease
+api_or_download:
+  - https://github.com/PantheonPlusSH0ES/DataRelease
+references:
+  - label: Pantheon+ analysis
+    url: https://github.com/PantheonPlusSH0ES/DataRelease
+status: planned
+provenance:
+  authority: Pantheon+ / SH0ES collaboration data release
+  accessed: "2026-04-15"
+  license_or_terms: Check repository license and paper citation requirements before redistribution.
+data_products:
+  - standardized distance moduli
+  - redshifts
+  - covariance matrices
+  - light-curve metadata
+known_caveats:
+  - Cosmology products encode cross-survey calibration and analysis choices.
+  - Raw photometry should be traced back to component surveys where needed.
+next_actions:
+  - Build the first validation-set adapter from the public data release.
+  - Record row counts, covariance shape, and known reference cosmology checks.

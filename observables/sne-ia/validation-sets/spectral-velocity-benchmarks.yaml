@@ -1,0 +1,38 @@
+id: sne-ia-spectral-velocity-benchmarks
+title: Type Ia spectral velocity and feature-evolution benchmarks
+domain: [sne-ia, spectra]
+status: proposed
+science_question: Can synthetic spectra reproduce observed Type Ia line velocities and feature evolution across phase?
+upstream_sources:
+  - wiserep
+  - tns
+selection:
+  summary: Use WISeREP spectra with preserved object identity, phase, wavelength coverage, calibration notes, and publication provenance.
+  cuts:
+    - Start with normal Type Ia spectra with secure classifications.
+    - Require phase metadata or enough light-curve context to derive phase.
+    - Track wavelength coverage for Si II 6355 and other benchmark features.
+observables:
+  - name: wavelength
+    unit: Angstrom
+    description: Spectral coordinate after preserving source-frame metadata.
+  - name: flux_density
+    unit: source-native
+    description: Flux density or relative flux as provided by the upstream spectrum.
+  - name: line_velocity
+    unit: km/s
+    description: Derived absorption-feature velocity with method metadata.
+  - name: phase
+    unit: day
+    description: Phase relative to maximum light where available or derived.
+provenance:
+  created_from:
+    - observables/sne-ia/sources/wiserep.yaml
+    - observables/sne-ia/sources/tns.yaml
+  requires_rebuild: true
+caveats:
+  - Spectra may not be absolutely flux calibrated.
+  - Telluric correction, dereddening, and host subtraction vary across sources.
+next_actions:
+  - Implement a metadata-only WISeREP availability index.
+  - Define feature-measurement methods before publishing derived velocities.

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cosmic-foundry.github.io/cosmic-observables/schemas/validation-set.schema.json",
+  "title": "Validation set manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "domain",
+    "status",
+    "science_question",
+    "upstream_sources",
+    "selection",
+    "observables",
+    "provenance",
+    "caveats",
+    "next_actions"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "title": { "type": "string" },
+    "domain": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "implementing", "available", "drifted"]
+    },
+    "science_question": { "type": "string" },
+    "upstream_sources": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "cuts"],
+      "properties": {
+        "summary": { "type": "string" },
+        "cuts": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "observables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "unit", "description"],
+        "properties": {
+          "name": { "type": "string" },
+          "unit": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "minItems": 1
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_from", "requires_rebuild"],
+      "properties": {
+        "created_from": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "requires_rebuild": { "type": "boolean" }
+      }
+    },
+    "caveats": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+id: sdss-ii-sn
+title: SDSS-II Supernova Survey
+kind: survey-release
+domain: [sne-ia, photometry, cosmology]
+role: Stripe 82 intermediate-redshift Type Ia supernova survey data.
+homepage: https://www.sdss4.org/surveys/supernova/
+api_or_download:
+  - https://www.sdss4.org/surveys/supernova/
+references:
+  - label: SDSS Supernova Survey overview
+    url: https://www.sdss4.org/surveys/supernova/
+status: candidate
+provenance:
+  authority: SDSS collaboration
+  accessed: "2026-04-15"
+  license_or_terms: Check SDSS data-use and citation terms.
+data_products:
+  - multi-band light curves
+  - spectroscopic classifications
+  - survey metadata
+known_caveats:
+  - Selection cuts and host-redshift provenance must be preserved for cosmology use.
+next_actions:
+  - Locate release tables and map object IDs to TNS aliases where possible.
