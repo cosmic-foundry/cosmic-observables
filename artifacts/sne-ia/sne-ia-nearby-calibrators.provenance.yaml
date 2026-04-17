@@ -1,0 +1,19 @@
+validation_set_id: sne-ia-nearby-calibrators
+built_at: '2026-04-17T04:56:14.365583Z'
+adapter:
+  script: src/cosmic_observables/adapters/csp_dr3.py
+  version: 1fcd11b6acc204f16f4f2b01c0499dca282155b4
+upstream:
+  catalog: csp-dr3
+  release: DR3
+  url: https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/AJ/154/211/OptPhot&-out.all
+  retrieved_at: '2026-04-17T04:56:14.365583Z'
+  content_hash:
+    algorithm: sha256
+    value: e747764ce975197f31fbd93b2b52545d58ca96c5d118d4b5606def09a5fa31bf
+artifact:
+  path: artifacts/sne-ia/sne-ia-nearby-calibrators.csv
+  content_hash:
+    algorithm: sha256
+    value: f499a0d98626d479fe959a7e9e0ce38f1f3c790daf4234be0238d4d684f82fd1
+  row_count: 222

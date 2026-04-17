@@ -93,6 +93,62 @@ plt.legend()
 plt.show()
 ```
 
+## Quick Look: Nearby Calibration Light Curves (CSP DR3)
+
+New in Phase 4: multi-band photometry for nearby supernovae. Below are the $B$ and $V$ light curves for **SN 2005am** from the **CSP DR3** validation artifact.
+
+```{code-cell} python3
+:tags: [hide-input]
+
+import csv
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+# Paths
+lc_path = Path("../artifacts/sne-ia/sne-ia-nearby-calibrators.csv")
+
+# Load data
+lc_data = []
+if lc_path.exists():
+    with open(lc_path, 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row['object_id'] == 'sn-2005am':
+                lc_data.append({
+                    'mjd': float(row['mjd']),
+                    'mag': float(row['magnitude']),
+                    'err': float(row['magnitude_err']),
+                    'filter': row['filter']
+                })
+
+if lc_data:
+    plt.figure(figsize=(10, 5))
+
+    colors = {'csp-dr3-b': 'blue', 'csp-dr3-v': 'green'}
+    for band in ['csp-dr3-b', 'csp-dr3-v']:
+        points = [d for d in lc_data if d['filter'] == band]
+        if points:
+            mjds = [p['mjd'] for p in points]
+            mags = [p['mag'] for p in points]
+            errs = [p['err'] for p in points]
+
+            # Find t_max (approximate)
+            t_max = mjds[mags.index(min(mags))]
+            phases = [t - t_max for t in mjds]
+
+            plt.errorbar(phases, mags, yerr=errs, fmt='o', label=band.upper(), color=colors.get(band, 'gray'))
+
+    plt.gca().invert_yaxis()
+    plt.xlabel('Relative Phase [days]')
+    plt.ylabel('Apparent Magnitude')
+    plt.title('Light Curve: SN 2005am (CSP DR3)')
+    plt.grid(alpha=0.2)
+    plt.legend()
+    plt.show()
+else:
+    print("No data found for SN 2005am in artifact.")
+```
+
 ## Getting Started
 
 Start with the [Type Ia supernova observables](sne-ia/index) or review the [Architectural Decision Records](adr/index).

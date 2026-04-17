@@ -39,3 +39,6 @@ aliases:
 - id: 2011fe
   catalog: pantheon-plus
   match_type: name
+- id: 2011fe
+  catalog: csp-dr3
+  match_type: name

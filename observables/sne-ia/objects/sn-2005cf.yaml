@@ -26,6 +26,9 @@ aliases:
 - id: 2005cf
   catalog: pantheon-plus
   match_type: name
+- id: 2005cf
+  catalog: csp-dr3
+  match_type: name
 host_galaxy:
   name: MCG -01-39-003
   catalog: tns
