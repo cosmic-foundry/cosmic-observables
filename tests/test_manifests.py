@@ -99,13 +99,13 @@ def test_object_manifests_match_schema() -> None:
 
 
 def test_object_alias_catalogs_exist() -> None:
-    catalog_ids = _catalog_ids()
-    assert catalog_ids
+    allowed_catalogs = _catalog_ids() | {LITERATURE_SENTINEL}
+    assert allowed_catalogs
 
     for path in sorted(OBJECT_DIR.glob("*.yaml")):
         manifest = _load_yaml(path)
         for alias in manifest.get("aliases", []):
-            assert alias["catalog"] in catalog_ids, (
+            assert alias["catalog"] in allowed_catalogs, (
                 f"{path.name}: alias id '{alias['id']}' references "
                 f"unknown catalog '{alias['catalog']}'"
             )

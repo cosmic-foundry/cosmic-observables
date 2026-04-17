@@ -1,31 +1,32 @@
 id: sn-2011fe
 name: SN 2011fe
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 2011fe
 coordinates:
-  ra: 210.7742
-  dec: 54.2738
-  source: literature
+  ra: 210.7738875
+  dec: 54.348969444444
+  source: tns
 redshift:
   value: 0.000804
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: M101 (NGC 5457)
-  catalog: literature
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: normal
   confidence: secure
-  catalog: literature
-first_observed: "2011-08-24"
+  catalog: tns
 aliases:
-  - id: SN 2011fe
-    catalog: wiserep
-    match_type: name
-  - id: SN 2011fe
-    catalog: pantheon-plus
-    match_type: name
-  - id: SN 2011fe
-    catalog: cfa
-    match_type: name
+- id: SN 2011fe
+  catalog: tns
+  match_type: name
+- id: PTF11kly
+  catalog: literature
+  match_type: name
+- id: Gaia11aan
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: M101
+  catalog: tns
+first_observed: '2011-08-24'

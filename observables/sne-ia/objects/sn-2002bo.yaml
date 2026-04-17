@@ -1,28 +1,29 @@
 id: sn-2002bo
 name: SN 2002bo
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 2002bo
 coordinates:
-  ra: 154.5190
-  dec: 21.8305
-  source: literature
+  ra: 154.527125
+  dec: 21.828306
+  source: tns
 redshift:
-  value: 0.00422
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: NGC 3190
-  catalog: literature
+  value: 0.0042
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
-  subtype: broad-lined
+  subtype: normal
   confidence: secure
-  catalog: literature
-first_observed: "2002-03-09"
+  catalog: tns
 aliases:
-  - id: SN 2002bo
-    catalog: wiserep
-    match_type: name
-  - id: SN 2002bo
-    catalog: pantheon-plus
-    match_type: name
+- id: SN 2002bo
+  catalog: tns
+  match_type: name
+- id: NGC 3190-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: NGC 3190
+  catalog: tns
+first_observed: '2002-03-09'

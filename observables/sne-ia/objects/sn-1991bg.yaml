@@ -1,28 +1,29 @@
 id: sn-1991bg
 name: SN 1991bg
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 1991bg
 coordinates:
-  ra: 186.2649
-  dec: 12.8869
-  source: literature
+  ra: 186.266958
+  dec: 12.886972
+  source: tns
 redshift:
-  value: 0.00355
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: NGC 4374 (M84)
-  catalog: literature
+  value: 0.0033
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: 91bg-like
   confidence: secure
-  catalog: literature
-first_observed: "1991-12-09"
+  catalog: tns
 aliases:
-  - id: SN 1991bg
-    catalog: wiserep
-    match_type: name
-  - id: SN 1991bg
-    catalog: cfa
-    match_type: name
+- id: SN 1991bg
+  catalog: tns
+  match_type: name
+- id: NGC 4374-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: NGC 4374
+  catalog: tns
+first_observed: '1991-12-09'

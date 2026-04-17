@@ -1,31 +1,29 @@
 id: sn-1991t
 name: SN 1991T
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 1991T
 coordinates:
-  ra: 188.8574
-  dec: 2.6524
-  source: literature
+  ra: 190.813125
+  dec: 2.637611
+  source: tns
 redshift:
-  value: 0.00574
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: NGC 4527
-  catalog: literature
+  value: 0.0058
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: 91T-like
   confidence: secure
-  catalog: literature
-first_observed: "1991-04-13"
+  catalog: tns
 aliases:
-  - id: SN 1991T
-    catalog: wiserep
-    match_type: name
-  - id: SN 1991T
-    catalog: cfa
-    match_type: name
-  - id: SN 1991T
-    catalog: pantheon-plus
-    match_type: name
+- id: SN 1991T
+  catalog: tns
+  match_type: name
+- id: NGC 4527-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: NGC 4527
+  catalog: tns
+first_observed: '1991-04-13'

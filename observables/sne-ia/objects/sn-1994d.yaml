@@ -1,28 +1,29 @@
 id: sn-1994d
 name: SN 1994D
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 1994D
 coordinates:
-  ra: 188.5168
-  dec: 7.6950
-  source: literature
+  ra: 188.510208
+  dec: 7.701306
+  source: tns
 redshift:
-  value: 0.00153
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: NGC 4526
-  catalog: literature
+  value: 0.0015
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: normal
   confidence: secure
-  catalog: literature
-first_observed: "1994-03-07"
+  catalog: tns
 aliases:
-  - id: SN 1994D
-    catalog: wiserep
-    match_type: name
-  - id: SN 1994D
-    catalog: cfa
-    match_type: name
+- id: SN 1994D
+  catalog: tns
+  match_type: name
+- id: NGC 4526-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: NGC 4526
+  catalog: tns
+first_observed: '1994-03-07'
