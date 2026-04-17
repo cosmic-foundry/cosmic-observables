@@ -200,6 +200,26 @@ def test_adapter_ready_validation_sets_use_release_pinned_catalogs() -> None:
             )
 
 
+def test_available_validation_sets_have_cleared_licenses() -> None:
+    catalogs = {path.stem: _load_yaml(path) for path in CATALOG_DIR.glob("*.yaml")}
+    assert catalogs
+
+    unsafe_statuses = {"unknown", "proprietary"}
+
+    for path in sorted(VALIDATION_SET_DIR.glob("*.yaml")):
+        manifest = _load_yaml(path)
+        if manifest["status"] != "available":
+            continue
+
+        for catalog_id in manifest["upstream_catalogs"]:
+            catalog = catalogs[catalog_id]
+            access_status = catalog["provenance"]["access"]["status"]
+            assert access_status not in unsafe_statuses, (
+                f"{path.name}: references catalog '{catalog_id}' with "
+                f"uncleared access status '{access_status}'"
+            )
+
+
 def test_available_validation_sets_reject_source_native_units() -> None:
     schema = _load_schema("validation-set.schema.json")
     validator = Draft202012Validator(

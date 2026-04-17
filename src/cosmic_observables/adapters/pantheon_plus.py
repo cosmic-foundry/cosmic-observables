@@ -2,8 +2,9 @@ import hashlib
 from datetime import UTC, datetime
 from pathlib import Path
 
-import requests  # type: ignore
 import yaml
+
+from cosmic_observables.http_client import HTTPClient
 
 UPSTREAM_URL = "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat"
 CATALOG_ID = "pantheon-plus"
@@ -21,8 +22,9 @@ def get_sha256(data: bytes) -> str:
 
 
 def fetch_data() -> tuple[bytes, str]:
+    client = HTTPClient()
     print(f"Fetching {UPSTREAM_URL}...")
-    response = requests.get(UPSTREAM_URL)
+    response = client.get(UPSTREAM_URL)
     response.raise_for_status()
     content = response.content
     return content, get_sha256(content)
