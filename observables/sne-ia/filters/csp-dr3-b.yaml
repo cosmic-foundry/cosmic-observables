@@ -1,0 +1,10 @@
+id: csp-dr3-b
+name: B
+survey: CSP
+magnitude_system: Vega
+effective_wavelength: 4328.6
+svo_id: Carnegie/CSP.B
+provenance:
+  authority: "Krisciunas et al. 2017 (CSP DR3)"
+  url: http://svo2.cab.inta-csic.es/theory/fps/index.php?id=Carnegie/CSP.B
+  notes: "Standard CSP-B filter used in the Carnegie Supernova Project DR3."
