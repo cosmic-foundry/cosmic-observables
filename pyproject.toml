@@ -24,6 +24,8 @@ docs = [
   "myst-nb",
   "sphinx-design",
   "sphinx-copybutton",
+  "matplotlib",
+  "pandas",
 ]
 dev = [
   "pytest",

@@ -55,5 +55,7 @@ repos:
           - myst-nb
           - sphinx-design
           - sphinx-copybutton
+          - matplotlib
+          - pandas
         files: ^docs/
         pass_filenames: false
