@@ -16,6 +16,16 @@ classification:
   subtype: normal
   confidence: secure
   catalog: tns
+host_galaxy:
+  name: M101
+  catalog: tns
+first_observed: '2011-08-24'
+disagreements:
+  coordinates:
+    - ra: 210.774
+      dec: 54.2737
+      catalog: pantheon-plus
+      notes: "Pantheon+ (Scolnic et al. 2022) records a ~4.5 arcmin separation from TNS coordinates."
 aliases:
 - id: SN 2011fe
   catalog: tns
@@ -29,7 +39,3 @@ aliases:
 - id: 2011fe
   catalog: pantheon-plus
   match_type: name
-host_galaxy:
-  name: M101
-  catalog: tns
-first_observed: '2011-08-24'
