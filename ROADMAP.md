@@ -128,8 +128,8 @@ Deliverables:
   available.
 - [ ] Alias table linking TNS names, historical SN names, survey IDs, and
   archive-specific object identifiers.
-- [ ] Cross-match checks for Pantheon+ objects against TNS and source
-  survey manifests.
+- [x] Cross-match checks for Pantheon+ objects against TNS and source
+  survey manifests. (Verified matches for core calibrator set).
 - [ ] Rules for conflicts: coordinates, classification labels, host
   associations, redshifts, and duplicate aliases.
 
