@@ -37,6 +37,18 @@ local development, any environment with `jsonschema`, `pyyaml`, and
 `cosmic-foundry/cosmic-foundry` provides a superset of these and
 works fine if it is already active.
 
+### ADR and documentation
+
+Every new architectural decision (ADR) under `adr/` must be accompanied by a corresponding documentation stub in `docs/adr/`. The documentation stub must use the Sphinx `{include}` directive to pull in the content from the root-level ADR file. This ensures the ADR is indexed by the documentation site and prevents `sphinx-build` failures for missing cross-references.
+
+Example stub (`docs/adr/ADR-NNNN-title.md`):
+```markdown
+# ADR-NNNN: Title
+
+```{include} ../../adr/ADR-NNNN-title.md
+```
+```
+
 ## Data rules
 
 - Treat upstream archives and survey releases as authoritative for
