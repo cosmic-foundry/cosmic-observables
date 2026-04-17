@@ -249,6 +249,8 @@ def test_available_validation_sets_reject_source_native_units() -> None:
     )
     manifest = _load_yaml(VALIDATION_SET_DIR / "sne-ia-nearby-calibrators.yaml")
     manifest["status"] = "available"
+    # Inject a source-native unit to trigger the validation error
+    manifest["observables"][0]["unit"] = "source-native"
 
     with pytest.raises(ValidationError):
         validator.validate(manifest)

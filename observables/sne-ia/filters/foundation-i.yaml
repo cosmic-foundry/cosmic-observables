@@ -1,0 +1,10 @@
+id: foundation-i
+name: i
+survey: Foundation
+magnitude_system: AB
+effective_wavelength: 7503.7
+svo_id: PAN-STARRS/PS1.i
+provenance:
+  authority: "Foley et al. 2018 (Foundation)"
+  url: http://svo2.cab.inta-csic.es/theory/fps/index.php?id=PAN-STARRS/PS1.i
+  notes: "Pan-STARRS1 i filter used by the Foundation Supernova Survey."

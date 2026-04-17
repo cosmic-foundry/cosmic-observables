@@ -1,0 +1,32 @@
+id: sn-2016ys
+name: SN 2016ys
+domain:
+- sne-ia
+tns_name: SN 2016ys
+coordinates:
+  ra: 108.05979
+  dec: 7.23978
+  source: tns
+redshift:
+  value: 0.00759
+  source_type: literature
+  catalog: foundation
+classification:
+  type: sne-ia
+  subtype: normal
+  confidence: secure
+  catalog: tns
+host_galaxy:
+  name: UGC 03738
+  catalog: foundation
+first_observed: '2016-01-28'
+aliases:
+- id: SN 2016ys
+  catalog: tns
+  match_type: name
+- id: ASASSN-16ay
+  catalog: literature
+  match_type: name
+- id: 2016ys
+  catalog: foundation
+  match_type: name

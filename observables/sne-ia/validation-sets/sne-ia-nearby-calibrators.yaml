@@ -20,14 +20,14 @@ observables:
     unit: mag
     description: Observed light-curve point in a named filter system.
   - name: flux
-    unit: source-native
-    description: Flux value when the upstream catalog provides calibrated fluxes.
-  - name: phase
+    unit: relative
+    description: Flux value when the upstream catalog provides calibrated or relative fluxes.
+  - name: phase_observer
     unit: day
-    description: Rest-frame or observer-frame phase, with frame recorded in product metadata.
-  - name: color
-    unit: mag
-    description: Derived color index for source-approved filter pairs.
+    description: Observer-frame phase relative to reference epoch (Tmax).
+  - name: phase_rest
+    unit: day
+    description: Rest-frame phase relative to reference epoch (Tmax), corrected for time dilation.
 build_plan:
   planned_from:
     - observables/sne-ia/catalogs/csp-dr3.yaml
@@ -35,10 +35,10 @@ build_plan:
     - observables/sne-ia/catalogs/cfa.yaml
     - observables/sne-ia/catalogs/cnia002.yaml
     - observables/sne-ia/catalogs/tns.yaml
-  requires_rebuild: true
+  requires_rebuild: false
 caveats:
   - Cross-survey calibration should not be inferred silently.
   - Nearby samples may have targeted-survey selection biases.
 next_actions:
-  - Choose 10 canonical nearby SNe Ia for the first small fixture set.
-  - Define filter metadata requirements before normalizing light curves.
+  - Add CNIa0.02 and CfA normalization adapters.
+  - Formalize filter cross-matching evidence for synthetic comparisons.

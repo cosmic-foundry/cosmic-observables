@@ -4,18 +4,19 @@ kind: survey-release
 domain: [sne-ia, photometry]
 role: Low-redshift Pan-STARRS-system Type Ia light curves for cosmology calibration.
 homepage: https://academic.oup.com/mnras/article/475/1/193/4693871
+release: "Foley+2018"
 api_or_download:
   - https://academic.oup.com/mnras/article/475/1/193/4693871
 references:
   - label: Foundation first photometry release
     url: https://academic.oup.com/mnras/article/475/1/193/4693871
-status: candidate
+status: available
 provenance:
   authority: Foundation Supernova Survey
   accessed: "2026-04-15"
   access:
-    status: unknown
-    description: Check paper data availability and journal terms before redistribution.
+    status: public
+    description: "Standard VizieR/CDS open access terms: non-commercial use with citation."
 data_products:
   - griz light curves
   - cosmology-sample membership

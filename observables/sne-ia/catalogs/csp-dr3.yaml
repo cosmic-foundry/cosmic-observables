@@ -11,13 +11,13 @@ api_or_download:
 references:
   - label: CSP DR3 release note
     url: https://csp.obs.carnegiescience.edu/news-items/csp-dr3-photometry-released
-status: ingesting
+status: available
 provenance:
   authority: Carnegie Supernova Project
   accessed: "2026-04-15"
   access:
-    status: unknown
-    description: Check CSP data citation and redistribution terms.
+    status: public
+    description: "Standard VizieR/CDS open access terms: non-commercial use with citation."
 data_products:
   - optical photometry
   - near-infrared photometry
