@@ -13,7 +13,9 @@ status: planned
 provenance:
   authority: TNS / IAU supernova naming workflow
   accessed: "2026-04-15"
-  license_or_terms: Check TNS API and bulk-use terms before storing derived artifacts.
+  access:
+    status: unknown
+    description: Check TNS API and bulk-use terms before storing derived artifacts.
 data_products:
   - transient names and aliases
   - coordinates

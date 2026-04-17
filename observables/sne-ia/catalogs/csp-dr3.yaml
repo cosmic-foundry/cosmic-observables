@@ -4,6 +4,7 @@ kind: survey-release
 domain: [sne-ia, photometry]
 role: High-quality optical and near-infrared low-redshift Type Ia photometry for light-curve calibration.
 homepage: https://csp.obs.carnegiescience.edu/data
+release: "DR3"
 api_or_download:
   - https://csp.obs.carnegiescience.edu/data
 references:
@@ -13,7 +14,9 @@ status: candidate
 provenance:
   authority: Carnegie Supernova Project
   accessed: "2026-04-15"
-  license_or_terms: Check CSP data citation and redistribution terms.
+  access:
+    status: unknown
+    description: Check CSP data citation and redistribution terms.
 data_products:
   - optical photometry
   - near-infrared photometry

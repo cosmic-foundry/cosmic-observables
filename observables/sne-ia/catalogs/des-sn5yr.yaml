@@ -4,6 +4,7 @@ kind: survey-release
 domain: [sne-ia, cosmology, photometry]
 role: Deep rolling-survey Type Ia light curves and cosmology sample.
 homepage: https://des-sn-dr.readthedocs.io/
+release: "SN5YR"
 api_or_download:
   - https://des-sn-dr.readthedocs.io/
 references:
@@ -13,7 +14,9 @@ status: candidate
 provenance:
   authority: DES Collaboration
   accessed: "2026-04-15"
-  license_or_terms: Check data-release terms before storing normalized artifacts.
+  access:
+    status: unknown
+    description: Check data-release terms before storing normalized artifacts.
 data_products:
   - griz light curves
   - photometric classification products

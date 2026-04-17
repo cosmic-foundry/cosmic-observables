@@ -64,9 +64,7 @@ def _validation_set_ids() -> set[str]:
 
 def _provenance_paths() -> list[Path]:
     return sorted(
-        path
-        for path in ROOT.rglob("*.provenance.yaml")
-        if ".git" not in path.parts
+        path for path in ROOT.rglob("*.provenance.yaml") if ".git" not in path.parts
     )
 
 
@@ -134,7 +132,7 @@ def test_object_provenance_catalogs_exist_or_are_literature() -> None:
             )
 
 
-def test_manifest_ids_are_unique_across_manifest_types() -> None:
+def test_manifest_ids_are_globally_unique() -> None:
     seen: dict[str, Path] = {}
     manifest_paths = [
         *CATALOG_DIR.glob("*.yaml"),
@@ -215,6 +213,46 @@ def test_available_validation_sets_reject_source_native_units() -> None:
         validator.validate(manifest)
 
 
+def test_artifact_provenance_sidecars_match_schema() -> None:
+    schema = _load_schema("artifact-provenance.schema.json")
+    validator = Draft202012Validator(
+        schema,
+        format_checker=Draft202012Validator.FORMAT_CHECKER,
+    )
+    paths = _provenance_paths()
+    assert paths
+
+    for path in paths:
+        manifest = _load_yaml(path)
+        validator.validate(manifest)
+
+
+def test_artifact_provenance_sidecars_reference_existing_manifests() -> None:
+    catalog_ids = _catalog_ids()
+    validation_set_ids = _validation_set_ids()
+
+    for path in _provenance_paths():
+        manifest = _load_yaml(path)
+        assert manifest["validation_set_id"] in validation_set_ids, (
+            f"{path}: references unknown validation set "
+            f"'{manifest['validation_set_id']}'"
+        )
+        assert manifest["upstream"]["catalog"] in catalog_ids, (
+            f"{path}: references unknown upstream catalog "
+            f"'{manifest['upstream']['catalog']}'"
+        )
+
+
+def test_artifact_provenance_sidecars_reference_existing_adapter_scripts() -> None:
+    for path in _provenance_paths():
+        manifest = _load_yaml(path)
+        adapter_path = ROOT / manifest["adapter"]["script"]
+        assert adapter_path.is_file(), (
+            f"{path}: references missing adapter script "
+            f"{manifest['adapter']['script']}"
+        )
+
+
 def test_artifact_provenance_schema_accepts_minimal_sidecar() -> None:
     schema = _load_schema("artifact-provenance.schema.json")
     validator = Draft202012Validator(
@@ -273,41 +311,3 @@ def test_artifact_provenance_schema_rejects_ambiguous_artifacts(
 
     with pytest.raises(ValidationError):
         validator.validate(manifest)
-
-
-def test_artifact_provenance_sidecars_match_schema() -> None:
-    schema = _load_schema("artifact-provenance.schema.json")
-    validator = Draft202012Validator(
-        schema,
-        format_checker=Draft202012Validator.FORMAT_CHECKER,
-    )
-
-    for path in _provenance_paths():
-        manifest = _load_yaml(path)
-        validator.validate(manifest)
-
-
-def test_artifact_provenance_sidecars_reference_existing_manifests() -> None:
-    catalog_ids = _catalog_ids()
-    validation_set_ids = _validation_set_ids()
-
-    for path in _provenance_paths():
-        manifest = _load_yaml(path)
-        assert manifest["validation_set_id"] in validation_set_ids, (
-            f"{path}: references unknown validation set "
-            f"'{manifest['validation_set_id']}'"
-        )
-        assert manifest["upstream"]["catalog"] in catalog_ids, (
-            f"{path}: references unknown upstream catalog "
-            f"'{manifest['upstream']['catalog']}'"
-        )
-
-
-def test_artifact_provenance_sidecars_reference_existing_adapter_scripts() -> None:
-    for path in _provenance_paths():
-        manifest = _load_yaml(path)
-        adapter_path = ROOT / manifest["adapter"]["script"]
-        assert adapter_path.is_file(), (
-            f"{path}: references missing adapter script "
-            f"{manifest['adapter']['script']}"
-        )

@@ -4,6 +4,7 @@ kind: survey-release
 domain: [sne-ia, photometry]
 role: Untargeted low-redshift Type Ia light-curve sample.
 homepage: https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/510/2228
+release: "DR1"
 api_or_download:
   - https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/510/2228
 references:
@@ -13,7 +14,9 @@ status: candidate
 provenance:
   authority: ZTF collaboration / CDS VizieR catalogue
   accessed: "2026-04-15"
-  license_or_terms: Check CDS and article citation requirements before redistribution.
+  access:
+    status: unknown
+    description: Check CDS and article citation requirements before redistribution.
 data_products:
   - light curves
   - spectroscopic classifications

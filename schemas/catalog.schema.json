@@ -74,11 +74,22 @@
       "type": "object",
       "additionalProperties": false,
       "$comment": "Records who is authoritative for this catalog, when it was accessed, and what the license or terms are. This is not artifact provenance; generated artifacts use artifact-provenance sidecars.",
-      "required": ["authority", "accessed", "license_or_terms"],
+      "required": ["authority", "accessed", "access"],
       "properties": {
         "authority": { "type": "string" },
         "accessed": { "type": "string", "format": "date" },
-        "license_or_terms": { "type": "string" }
+        "access": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["public", "restricted", "proprietary", "by-permission", "unknown"]
+            },
+            "description": { "type": "string" }
+          }
+        }
       }
     },
     "data_products": {

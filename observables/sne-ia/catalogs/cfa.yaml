@@ -13,7 +13,9 @@ status: candidate
 provenance:
   authority: Center for Astrophysics supernova archive
   accessed: "2026-04-15"
-  license_or_terms: Check archive and publication terms before redistribution.
+  access:
+    status: unknown
+    description: Check archive and publication terms before redistribution.
 data_products:
   - light curves
   - spectra

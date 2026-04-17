@@ -13,7 +13,9 @@ status: candidate
 provenance:
   authority: Carnegie Science / CNIa0.02 release
   accessed: "2026-04-15"
-  license_or_terms: Check release and paper terms before redistribution.
+  access:
+    status: unknown
+    description: Check release and paper terms before redistribution.
 data_products:
   - nearby Type Ia light curves
   - sample membership
