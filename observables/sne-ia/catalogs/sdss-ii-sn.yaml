@@ -4,6 +4,7 @@ kind: survey-release
 domain: [sne-ia, photometry, cosmology]
 role: Stripe 82 intermediate-redshift Type Ia supernova survey data.
 homepage: https://www.sdss4.org/surveys/supernova/
+release: "DR2"
 api_or_download:
   - https://www.sdss4.org/surveys/supernova/
 references:
@@ -13,7 +14,9 @@ status: candidate
 provenance:
   authority: SDSS collaboration
   accessed: "2026-04-15"
-  license_or_terms: Check SDSS data-use and citation terms.
+  access:
+    status: unknown
+    description: Check SDSS data-use and citation terms.
 data_products:
   - multi-band light curves
   - spectroscopic classifications

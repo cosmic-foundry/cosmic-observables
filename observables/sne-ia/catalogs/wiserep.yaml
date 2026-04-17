@@ -14,7 +14,9 @@ status: planned
 provenance:
   authority: WISeREP
   accessed: "2026-04-15"
-  license_or_terms: Preserve contributor attribution and archive terms for downloaded files.
+  access:
+    status: unknown
+    description: Preserve contributor attribution and archive terms for downloaded files.
 data_products:
   - spectra
   - photometry

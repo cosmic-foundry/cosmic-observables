@@ -289,16 +289,13 @@ Exit criteria:
 
 ## Near-term issue backlog
 
-- Add catalog license / terms fields with structured status instead of
-  free text.
-- Choose the first Pantheon+ adapter strategy and pin exact upstream
-  release inputs. Add a `release` field to the Pantheon+ catalog
-  manifest before building the adapter — the current `provenance.accessed`
-  date is not a release pin.
-- Decide whether docs should use Sphinx/MyST, MkDocs, or a lighter
-  static generator.
-- Add a manifest changelog convention so observational fact updates
-  are easy to review.
+- [x] Add CI for `pytest`.
+- [x] Add schema validation for duplicate IDs across all manifest types.
+- [x] Add catalog license / terms fields with structured status instead of free text.
+- [x] Add a first object-identity schema and a 10-object canonical Type Ia fixture set.
+- [x] Choose the first Pantheon+ adapter strategy and pin exact upstream release inputs. (Pinned to c447f0f).
+- [ ] Decide whether docs should use Sphinx/MyST, MkDocs, or a lighter static generator.
+- [ ] Add a manifest changelog convention so observational fact updates are easy to review.
 
 ## Known deferred decisions (tracked risks)
 

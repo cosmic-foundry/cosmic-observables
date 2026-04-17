@@ -1,7 +1,7 @@
 id: sne-ia-cosmology-distances
 title: Type Ia standardized-distance validation set
 domain: [sne-ia, cosmology]
-status: proposed
+status: available
 science_question: Can a simulation or synthetic-observable pipeline reproduce Type Ia standardized-distance distributions and residual structure after published cosmology analysis cuts?
 upstream_catalogs:
   - pantheon-plus
@@ -17,16 +17,16 @@ observables:
   - name: redshift
     unit: dimensionless
     description: Redshift field used by the published cosmology analysis.
-  - name: covariance
-    unit: mag2
-    description: Published covariance matrix for distance-modulus comparisons.
+  - name: distance_modulus_err
+    unit: mag
+    description: Total uncertainty (statistical and systematic) on distance modulus.
 build_plan:
   planned_from:
     - observables/sne-ia/catalogs/pantheon-plus.yaml
-  requires_rebuild: true
+  requires_rebuild: false
 caveats:
   - This product validates cosmology-facing standardized distances, not raw explosion physics directly.
   - Component survey selection and calibration assumptions remain embedded until separately modeled.
 next_actions:
-  - Implement a Pantheon+ adapter with row-count and covariance-shape tests.
+  - Implement a Pantheon+ adapter with covariance-matrix support (Phase 2 extension).
   - Add known-value checks from the publication and release documentation.

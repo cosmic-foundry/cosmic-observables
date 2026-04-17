@@ -13,7 +13,9 @@ status: candidate
 provenance:
   authority: Foundation Supernova Survey
   accessed: "2026-04-15"
-  license_or_terms: Check paper data availability and journal terms before redistribution.
+  access:
+    status: unknown
+    description: Check paper data availability and journal terms before redistribution.
 data_products:
   - griz light curves
   - cosmology-sample membership

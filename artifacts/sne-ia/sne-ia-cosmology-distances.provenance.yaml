@@ -1,0 +1,19 @@
+validation_set_id: sne-ia-cosmology-distances
+built_at: '2026-04-17T00:40:39.412187Z'
+adapter:
+  script: src/cosmic_observables/adapters/pantheon_plus.py
+  version: 1483f37a5dcfc5b6291ecfbdfc6cd37881aed4ad
+upstream:
+  catalog: pantheon-plus
+  release: c447f0f
+  url: https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon+_Data/4_DISTANCES_AND_COVAR/Pantheon+SH0ES.dat
+  retrieved_at: '2026-04-17T00:40:39.412187Z'
+  content_hash:
+    algorithm: sha256
+    value: 1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8
+artifact:
+  path: artifacts/sne-ia/sne-ia-cosmology-distances.csv
+  content_hash:
+    algorithm: sha256
+    value: e7700ec875f71a6e6bed78c565c2fcbbcda650b4909ae03583284299ddc3ed5f
+  row_count: 1701

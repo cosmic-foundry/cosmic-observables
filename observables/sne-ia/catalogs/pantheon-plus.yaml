@@ -4,6 +4,7 @@ kind: compilation
 domain: [sne-ia, cosmology]
 role: Cosmology-ready standardized Type Ia distance sample and covariance reference.
 homepage: https://github.com/PantheonPlusSH0ES/DataRelease
+release: "c447f0f"
 api_or_download:
   - https://github.com/PantheonPlusSH0ES/DataRelease
 references:
@@ -13,7 +14,9 @@ status: planned
 provenance:
   authority: Pantheon+ / SH0ES collaboration data release
   accessed: "2026-04-15"
-  license_or_terms: Check repository license and paper citation requirements before redistribution.
+  access:
+    status: unknown
+    description: Check repository license and paper citation requirements before redistribution.
 data_products:
   - standardized distance moduli
   - redshifts
