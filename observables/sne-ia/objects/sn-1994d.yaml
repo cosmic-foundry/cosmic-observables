@@ -23,6 +23,10 @@ aliases:
 - id: NGC 4526-SN1
   catalog: literature
   match_type: name
+- id: 1994DRichmond
+  catalog: pantheon-plus
+  match_type: manual
+  notes: "Pantheon+ identifies this object as 1994DRichmond based on the photometry source (Richmond et al. 1995)."
 host_galaxy:
   name: NGC 4526
   catalog: tns

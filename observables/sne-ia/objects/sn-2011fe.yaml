@@ -26,6 +26,9 @@ aliases:
 - id: Gaia11aan
   catalog: literature
   match_type: name
+- id: 2011fe
+  catalog: pantheon-plus
+  match_type: name
 host_galaxy:
   name: M101
   catalog: tns

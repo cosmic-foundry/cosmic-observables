@@ -23,6 +23,9 @@ aliases:
 - id: NGC 7425-SN1
   catalog: literature
   match_type: name
+- id: 2009ig
+  catalog: pantheon-plus
+  match_type: name
 host_galaxy:
   name: NGC 7425
   catalog: tns
