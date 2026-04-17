@@ -1,28 +1,32 @@
 id: sn-2021aefx
 name: SN 2021aefx
-domain: [sne-ia]
+domain:
+- sne-ia
 tns_name: SN 2021aefx
 coordinates:
-  ra: 65.0023
-  dec: -54.9380
+  ra: 58.00392
+  dec: -36.26297
   source: tns
 redshift:
-  value: 0.00502
-  source_type: host-galaxy-spectrum
-  catalog: tns
-host_galaxy:
-  name: NGC 1566
+  value: 0.005117
+  source_type: literature
   catalog: tns
 classification:
   type: sne-ia
   subtype: normal
   confidence: secure
   catalog: tns
-first_observed: "2021-11-11"
 aliases:
-  - id: SN 2021aefx
-    catalog: wiserep
-    match_type: name
-  - id: SN 2021aefx
-    catalog: tns
-    match_type: name
+- id: SN 2021aefx
+  catalog: tns
+  match_type: name
+- id: DLT21an
+  catalog: literature
+  match_type: name
+- id: ZTF21acbeufr
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: NGC 1566
+  catalog: tns
+first_observed: '2021-11-11'

@@ -1,31 +1,29 @@
 id: sn-2005cf
 name: SN 2005cf
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 2005cf
 coordinates:
-  ra: 230.2792
-  dec: -3.6969
-  source: literature
+  ra: 230.384208
+  dec: -7.413028
+  source: tns
 redshift:
-  value: 0.00646
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: MCG-01-39-003
-  catalog: literature
+  value: 0.0065
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: normal
   confidence: secure
-  catalog: literature
-first_observed: "2005-05-28"
+  catalog: tns
 aliases:
-  - id: SN 2005cf
-    catalog: wiserep
-    match_type: name
-  - id: SN 2005cf
-    catalog: csp-dr3
-    match_type: name
-  - id: SN 2005cf
-    catalog: pantheon-plus
-    match_type: name
+- id: SN 2005cf
+  catalog: tns
+  match_type: name
+- id: MCG -01-39-003-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: MCG -01-39-003
+  catalog: tns
+first_observed: '2005-05-28'

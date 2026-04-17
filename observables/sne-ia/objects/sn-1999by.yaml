@@ -1,28 +1,29 @@
 id: sn-1999by
 name: SN 1999by
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 1999by
 coordinates:
-  ra: 140.5060
-  dec: 50.9773
-  source: literature
+  ra: 200.043958
+  dec: 34.416611
+  source: tns
 redshift:
-  value: 0.00214
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: NGC 2841
-  catalog: literature
+  value: 0.0021
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: 91bg-like
   confidence: secure
-  catalog: literature
-first_observed: "1999-04-28"
+  catalog: tns
 aliases:
-  - id: SN 1999by
-    catalog: wiserep
-    match_type: name
-  - id: SN 1999by
-    catalog: cfa
-    match_type: name
+- id: SN 1999by
+  catalog: tns
+  match_type: name
+- id: NGC 5174-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: NGC 5174
+  catalog: tns
+first_observed: '1999-04-30'

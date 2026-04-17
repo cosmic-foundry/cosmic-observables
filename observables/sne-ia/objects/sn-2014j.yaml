@@ -1,31 +1,29 @@
 id: sn-2014j
 name: SN 2014J
-domain: [sne-ia]
-tns_name: null
+domain:
+- sne-ia
+tns_name: SN 2014J
 coordinates:
-  ra: 148.9247
-  dec: 69.6735
-  source: literature
+  ra: 148.9255
+  dec: 69.673861
+  source: tns
 redshift:
-  value: 0.000677
-  source_type: host-galaxy-spectrum
-  catalog: literature
-host_galaxy:
-  name: M82 (NGC 3034)
-  catalog: literature
+  value: 0.0007
+  source_type: literature
+  catalog: tns
 classification:
   type: sne-ia
   subtype: normal
   confidence: secure
-  catalog: literature
-first_observed: "2014-01-14"
+  catalog: tns
 aliases:
-  - id: SN 2014J
-    catalog: wiserep
-    match_type: name
-  - id: SN 2014J
-    catalog: cfa
-    match_type: name
-  - id: SN 2014J
-    catalog: pantheon-plus
-    match_type: name
+- id: SN 2014J
+  catalog: tns
+  match_type: name
+- id: M82-SN1
+  catalog: literature
+  match_type: name
+host_galaxy:
+  name: M82
+  catalog: tns
+first_observed: '2014-01-21'

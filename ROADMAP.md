@@ -123,14 +123,14 @@ for multi-source validation sets.
 
 Deliverables:
 
-- TNS adapter for metadata, names, aliases, coordinates,
+- [x] TNS adapter for metadata, names, aliases, coordinates,
   classifications, reports, and redshift / host fields where
   available.
-- Alias table linking TNS names, historical SN names, survey IDs, and
+- [ ] Alias table linking TNS names, historical SN names, survey IDs, and
   archive-specific object identifiers.
-- Cross-match checks for Pantheon+ objects against TNS and source
+- [ ] Cross-match checks for Pantheon+ objects against TNS and source
   survey manifests.
-- Rules for conflicts: coordinates, classification labels, host
+- [ ] Rules for conflicts: coordinates, classification labels, host
   associations, redshifts, and duplicate aliases.
 
 Exit criteria:
