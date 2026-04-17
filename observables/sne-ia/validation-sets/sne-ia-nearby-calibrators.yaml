@@ -1,7 +1,7 @@
 id: sne-ia-nearby-calibrators
 title: Nearby Type Ia calibration-quality light curves
 domain: [sne-ia, photometry]
-status: proposed
+status: available
 science_question: Can synthetic Type Ia light curves reproduce nearby multi-band color and luminosity evolution in well-calibrated low-redshift samples?
 upstream_catalogs:
   - csp-dr3

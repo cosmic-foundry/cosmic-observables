@@ -1,0 +1,7 @@
+filter_id: csp-dr3-b
+standard_band: Landolt-B
+relationship: approximate
+provenance:
+  authority: "Krisciunas et al. 2017 (CSP DR3)"
+  url: https://doi.org/10.3847/1538-3881/aa784d
+  notes: "CSP-B is a custom filter, often compared to Landolt B with color terms."

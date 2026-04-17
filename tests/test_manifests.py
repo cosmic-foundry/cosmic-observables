@@ -13,6 +13,7 @@ CATALOG_DIR = ROOT / "observables" / "sne-ia" / "catalogs"
 OBJECT_DIR = ROOT / "observables" / "sne-ia" / "objects"
 VALIDATION_SET_DIR = ROOT / "observables" / "sne-ia" / "validation-sets"
 FILTER_DIR = ROOT / "observables" / "sne-ia" / "filters"
+FILTER_MATCH_DIR = ROOT / "observables" / "sne-ia" / "filter-matches"
 LITERATURE_SENTINEL = "literature"
 
 
@@ -97,6 +98,32 @@ def test_filter_manifests_match_schema() -> None:
         manifest = _load_yaml(path)
         validator.validate(manifest)
         assert manifest["id"] == path.stem
+
+
+def test_filter_match_manifests_match_schema() -> None:
+    schema = _load_schema("filter-match.schema.json")
+    validator = Draft202012Validator(
+        schema,
+        format_checker=Draft202012Validator.FORMAT_CHECKER,
+    )
+    paths = sorted(FILTER_MATCH_DIR.glob("*.yaml"))
+    assert paths
+
+    for path in paths:
+        manifest = _load_yaml(path)
+        validator.validate(manifest)
+
+
+def test_filter_match_ids_exist() -> None:
+    filter_ids = {path.stem for path in FILTER_DIR.glob("*.yaml")}
+    assert filter_ids
+
+    for path in sorted(FILTER_MATCH_DIR.glob("*.yaml")):
+        manifest = _load_yaml(path)
+        assert manifest["filter_id"] in filter_ids, (
+            f"{path.name}: filter_match references unknown filter_id "
+            f"'{manifest['filter_id']}'"
+        )
 
 
 def test_object_manifests_match_schema() -> None:
