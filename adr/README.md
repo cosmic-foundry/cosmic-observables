@@ -11,3 +11,6 @@ This directory records architectural decisions for Cosmic Observables.
   catalog alias records with match_type evidence), units policy (enum
   of valid unit strings, filter/system as separate fields), and artifact
   provenance (sidecar YAML written by adapters alongside each artifact).
+- [ADR-0003](ADR-0003-calibration-and-extinction-policy.md) *(Proposed)* --
+  Calibration and extinction policy for photometric observables: mandatory
+  row-level boolean flags for physical corrections.
