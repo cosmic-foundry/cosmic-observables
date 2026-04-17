@@ -1,19 +1,22 @@
 validation_set_id: sne-ia-nearby-calibrators
-built_at: '2026-04-17T04:56:14.365583Z'
+built_at: '2026-04-17T11:37:52.528111Z'
 adapter:
   script: src/cosmic_observables/adapters/csp_dr3.py
-  version: 1fcd11b6acc204f16f4f2b01c0499dca282155b4
+  version: 02aa934a4e6148f1eceeec0b57d5435e9566cf32
 upstream:
   catalog: csp-dr3
-  release: DR3
-  url: https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/AJ/154/211/OptPhot&-out.all
-  retrieved_at: '2026-04-17T04:56:14.365583Z'
-  content_hash:
-    algorithm: sha256
-    value: e747764ce975197f31fbd93b2b52545d58ca96c5d118d4b5606def09a5fa31bf
+  release: Krisciunas+2017
+  tables:
+  - name: OptPhot
+    url: https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/AJ/154/211/OptPhot&-out.all
+    hash: 10b70713e027bc723a6961c6ff78b123db4b9ce5854ab7e8f5f302710a8c3db3
+  - name: catalog
+    url: https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/AJ/154/211/catalog&-out.all
+    hash: 262e12fba86dc5b9f2452235572479e88343b68e5649ba3214ed58c48bb3ebee
+  retrieved_at: '2026-04-17T11:37:52.528111Z'
 artifact:
   path: artifacts/sne-ia/sne-ia-nearby-calibrators.csv
   content_hash:
     algorithm: sha256
-    value: f499a0d98626d479fe959a7e9e0ce38f1f3c790daf4234be0238d4d684f82fd1
-  row_count: 222
+    value: e2a5e2d467edb04c9cae49c9d0baca4d923e07062fc21d4c17b470e871f66686
+  row_count: 244

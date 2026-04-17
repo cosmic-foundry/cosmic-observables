@@ -9,9 +9,9 @@ import yaml
 from cosmic_observables.cross_match import load_object_resolver
 from cosmic_observables.http_client import STANDARD_UA, HTTPClient
 
-UPSTREAM_URL = "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/AJ/154/211/OptPhot&-out.all"
-CATALOG_URL = "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/AJ/154/211/catalog&-out.all"
-CATALOG_ID = "csp-dr3"
+TABLE2_URL = "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/MNRAS/475/193/table2&-out.all"
+TABLE6_URL = "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=J/MNRAS/475/193/table6&-out.all"
+CATALOG_ID = "foundation"
 VALIDATION_SET_ID = "sne-ia-nearby-calibrators"
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -19,10 +19,12 @@ ARTIFACT_DIR = ROOT / "artifacts" / "sne-ia"
 ARTIFACT_PATH = ARTIFACT_DIR / f"{VALIDATION_SET_ID}.csv"
 PROVENANCE_PATH = ARTIFACT_DIR / f"{VALIDATION_SET_ID}.provenance.yaml"
 
-# Filter mapping: VizieR column names to our registry IDs
+# Filter mapping: VizieR filter strings to our registry IDs
 FILTER_MAP = {
-    "Bmag": "csp-dr3-b",
-    "Vmag": "csp-dr3-v",
+    "gP1": "foundation-g",
+    "rP1": "foundation-r",
+    "iP1": "foundation-i",
+    "zP1": "foundation-z",
 }
 
 
@@ -57,103 +59,96 @@ def parse_vizier_tsv(content: str) -> list[list[str]]:
 
 
 def normalize_data(
-    optphot_content: str, catalog_content: str
+    table2_content: str, table6_content: str
 ) -> tuple[list[dict[str, str]], int]:
     resolver = load_object_resolver()
 
-    # 1. Parse Catalog for Tpeak and z
-    # SN: 1, z: 9, T(Bmax): 21, e_T(Bmax): 22, Tpeak: 23, e_Tpeak: 24
+    # 1. Parse Table 6 for MJDpeak and Redshift
+    # Columns: recno, SN, zhelio, e_zhelio, zCMB, e_zCMB, MJDpeak, e_MJDpeak, ...
+    # SN: 1, zhelio: 2, MJDpeak: 6, e_MJDpeak: 7
     sn_params = {}
-    catalog_data = parse_vizier_tsv(catalog_content)
-    for parts in catalog_data:
-        if len(parts) < 25:
+    table6_data = parse_vizier_tsv(table6_content)
+    for parts in table6_data:
+        if len(parts) < 8:
             continue
         sn_name = parts[1]
         try:
-            # Prefer Tpeak, then T(Bmax)
-            tmax_str = parts[23] or parts[21]
-            e_tmax_str = parts[24] or parts[22]
-            z_str = parts[9]
-            if tmax_str and z_str:
-                sn_params[sn_name] = {
-                    "z": float(z_str),
-                    "tmax": float(tmax_str),
-                    "e_tmax": float(e_tmax_str) if e_tmax_str else 0.5,
-                }
+            sn_params[sn_name] = {
+                "z": float(parts[2]),
+                "tmax": float(parts[6]),
+                "e_tmax": float(parts[7]),
+            }
         except ValueError:
             continue
 
-    # 2. Parse OptPhot and Join
-    # SN: 2, JD: 3, Bmag: 12, e_Bmag: 13, Vmag: 14, e_Vmag: 15
+    # 2. Parse Table 2 and Join
+    # Columns: recno, SN, MJD, Filter, l_mag, mag, e_mag, Flux, e_Flux
+    # SN: 1, MJD: 2, Filter: 3, mag: 5, e_mag: 6, Flux: 7, e_Flux: 8
     output_rows = []
-    optphot_data = parse_vizier_tsv(optphot_content)
-    for parts in optphot_data:
-        if len(parts) < 15:
+    table2_data = parse_vizier_tsv(table2_content)
+    for parts in table2_data:
+        if len(parts) < 9:
             continue
 
-        raw_sn = parts[2]
-        jd_str = parts[3]
+        raw_sn = parts[1]
+        mjd_str = parts[2]
+        filter_raw = parts[3]
+        mag_str = parts[5]
+        mag_err_str = parts[6]
+        flux_str = parts[7]
+        flux_err_str = parts[8]
 
         # Resolve Object Slug
-        sn_query = raw_sn.replace("SN", "")
-        slug = resolver.get(sn_query) or resolver.get(raw_sn)
+        slug = resolver.get(raw_sn)
+        if not slug:
+            # Try removing common prefixes if any
+            slug = resolver.get(raw_sn.replace("SN", ""))
+
         if not slug:
             continue
 
-        try:
-            mjd = float(jd_str) - 2400000.5
-        except ValueError:
+        if not mag_str or not mag_err_str:
             continue
 
-        params = sn_params.get(raw_sn) or sn_params.get(sn_query)
+        params = sn_params.get(raw_sn)
+        if not params:
+            continue
 
-        phase_obs = ""
-        phase_rest = ""
-        phase_err = ""
-        if params:
-            try:
-                p_obs = mjd - params["tmax"]
-                p_rest = p_obs / (1.0 + params["z"])
-                phase_obs = f"{p_obs:.3f}"
-                phase_rest = f"{p_rest:.3f}"
-                phase_err = f"{params['e_tmax']:.2f}"
-            except (ValueError, ZeroDivisionError):
-                pass
+        try:
+            mjd = float(mjd_str)
+            phase_obs = mjd - params["tmax"]
+            phase_rest = phase_obs / (1.0 + params["z"])
+            phase_err = params["e_tmax"]  # Simplification: phase error ~ tmax error
+        except (ValueError, ZeroDivisionError):
+            continue
 
-        # Extract B and V bands
-        for mag_col, filter_id in FILTER_MAP.items():
-            idx_mag = 12 if mag_col == "Bmag" else 14
-            idx_err = 13 if mag_col == "Bmag" else 15
+        filter_id = FILTER_MAP.get(filter_raw, f"foundation-{filter_raw.lower()}")
 
-            mag_val = parts[idx_mag]
-            err_val = parts[idx_err]
-
-            if mag_val and err_val:
-                output_rows.append(
-                    {
-                        "object_id": slug,
-                        "mjd": f"{mjd:.3f}",
-                        "magnitude": mag_val,
-                        "magnitude_err": err_val,
-                        "flux": "",
-                        "flux_err": "",
-                        "filter": filter_id,
-                        "magnitude_system": "Vega",
-                        "time_system": "MJD",
-                        "phase_observer": phase_obs,
-                        "phase_rest": phase_rest,
-                        "phase_err": phase_err,
-                        "quality_flag": "",
-                        "galactic_extinction_corrected": "false",
-                        "k_corrected": "false",
-                    }
-                )
+        output_rows.append(
+            {
+                "object_id": slug,
+                "mjd": f"{mjd:.3f}",
+                "magnitude": mag_str,
+                "magnitude_err": mag_err_str,
+                "flux": flux_str,
+                "flux_err": flux_err_str,
+                "filter": filter_id,
+                "magnitude_system": "AB",
+                "time_system": "MJD",
+                "phase_observer": f"{phase_obs:.3f}",
+                "phase_rest": f"{phase_rest:.3f}",
+                "phase_err": f"{phase_err:.2f}",
+                "quality_flag": "",
+                "galactic_extinction_corrected": "false",
+                "k_corrected": "false",
+            }
+        )
 
     return output_rows, len(output_rows)
 
 
 def write_provenance(
-    optphot_hash: str, catalog_hash: str, artifact_hash: str, row_count: int
+    table2_hash: str, table6_hash: str, artifact_hash: str, row_count: int
 ) -> None:
     now = datetime.now(UTC).isoformat().replace("+00:00", "Z")
     import subprocess
@@ -176,10 +171,10 @@ def write_provenance(
         },
         "upstream": {
             "catalog": CATALOG_ID,
-            "release": "Krisciunas+2017",
+            "release": "Foley+2018",
             "tables": [
-                {"name": "OptPhot", "url": UPSTREAM_URL, "hash": optphot_hash},
-                {"name": "catalog", "url": CATALOG_URL, "hash": catalog_hash},
+                {"name": "table2", "url": TABLE2_URL, "hash": table2_hash},
+                {"name": "table6", "url": TABLE6_URL, "hash": table6_hash},
             ],
             "retrieved_at": now,
         },
@@ -198,10 +193,10 @@ def main() -> None:
     sys.path.append(str(ROOT / "src"))
     ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 
-    opt_content, opt_hash = fetch_tsv(UPSTREAM_URL)
-    cat_content, cat_hash = fetch_tsv(CATALOG_URL)
+    t2_content, t2_hash = fetch_tsv(TABLE2_URL)
+    t6_content, t6_hash = fetch_tsv(TABLE6_URL)
 
-    rows, row_count = normalize_data(opt_content, cat_content)
+    rows, row_count = normalize_data(t2_content, t6_content)
 
     fieldnames = [
         "object_id",
@@ -221,14 +216,21 @@ def main() -> None:
         "k_corrected",
     ]
 
+    # Note: This overwrites or appends?
+    # Roadmap says: "Normalization adapters for CSP DR3 and Foundation releases."
+    # CSP DR3 already wrote to ARTIFACT_PATH.
+    # We should probably combine them if they target the same validation set.
+
     existing_rows = []
     if ARTIFACT_PATH.exists():
         with open(ARTIFACT_PATH) as f:
             reader = csv.DictReader(f)
             existing_rows = list(reader)
 
-    # Filter out existing CSP rows if we are re-running
-    existing_rows = [r for r in existing_rows if not r["filter"].startswith("csp-dr3-")]
+    # Filter out existing foundation rows if we are re-running
+    existing_rows = [
+        r for r in existing_rows if not r["filter"].startswith("foundation-")
+    ]
 
     all_rows = existing_rows + rows
 
@@ -242,10 +244,9 @@ def main() -> None:
 
     print(
         f"Wrote {len(all_rows)} total photometry points to {ARTIFACT_PATH} "
-        f"({row_count} from CSP)"
+        f"({row_count} from Foundation)"
     )
-
-    write_provenance(opt_hash, cat_hash, artifact_hash, len(all_rows))
+    write_provenance(t2_hash, t6_hash, artifact_hash, len(all_rows))
 
 
 if __name__ == "__main__":

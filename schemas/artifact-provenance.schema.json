@@ -45,9 +45,7 @@
       "required": [
         "catalog",
         "release",
-        "url",
-        "retrieved_at",
-        "content_hash"
+        "retrieved_at"
       ],
       "properties": {
         "catalog": {
@@ -63,7 +61,7 @@
         "url": {
           "type": "string",
           "format": "uri",
-          "description": "URL from which the upstream input was fetched."
+          "description": "URL from which the upstream input was fetched (for single-file inputs)."
         },
         "retrieved_at": {
           "type": "string",
@@ -72,7 +70,21 @@
         },
         "content_hash": {
           "$ref": "#/$defs/sha256_hash",
-          "description": "Hash of the fetched upstream input."
+          "description": "Hash of the fetched upstream input (for single-file inputs)."
+        },
+        "tables": {
+          "type": "array",
+          "description": "Metadata for multiple upstream tables used in the artifact (e.g. for multi-table VizieR catalogs).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "url", "hash"],
+            "properties": {
+              "name": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+            }
+          }
         }
       }
     },

@@ -14,6 +14,8 @@
         "mjd": { "type": "string", "description": "Modified Julian Date of the observation." },
         "magnitude": { "type": "string", "description": "Apparent magnitude." },
         "magnitude_err": { "type": "string", "description": "1-sigma uncertainty on the magnitude." },
+        "flux": { "type": "string", "description": "Calibrated flux value (optional)." },
+        "flux_err": { "type": "string", "description": "1-sigma uncertainty on the flux (optional)." },
         "filter": { "type": "string", "description": "Identifier resolving to a filter manifest (e.g. 'csp-dr3-b')." },
         "magnitude_system": { "type": "string", "description": "Override for the magnitude system if it differs from the filter default." },
         "time_system": {
@@ -21,6 +23,10 @@
           "enum": ["MJD", "JD", "BJD"],
           "default": "MJD"
         },
+        "phase_observer": { "type": "string", "description": "Observer-frame phase relative to a reference epoch (e.g. Tmax)." },
+        "phase_rest": { "type": "string", "description": "Rest-frame phase relative to a reference epoch, corrected for time dilation." },
+        "phase_err": { "type": "string", "description": "Uncertainty in phase, incorporating uncertainty in the reference epoch." },
+        "quality_flag": { "type": "string", "description": "Source-native quality indicator or selection bitmask." },
         "data_treatment": {
           "type": "object",
           "additionalProperties": false,
