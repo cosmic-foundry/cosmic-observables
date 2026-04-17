@@ -1,5 +1,11 @@
 # Cosmic Observables
 
+## Current Status
+
+- **Active Phase**: [Phase 3 — Object identity and source cross-matching](ROADMAP.md#phase-3----object-identity-and-source-cross-matching)
+- **Latest Milestone**: First reproducible Type Ia validation product (Phase 2).
+- **Full Roadmap**: See [ROADMAP.md](ROADMAP.md).
+
 Cosmic Observables is the empirical reference layer for the Cosmic
 Foundry organization. It organizes published astronomy observations
 so simulation outputs can be validated against traceable, reviewable,
