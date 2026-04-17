@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cosmic-foundry.github.io/cosmic-observables/schemas/filter-match.schema.json",
+  "title": "Filter cross-match evidence",
+  "$comment": "Records the relationship between a survey-specific filter and a standard or reference bandpass. This provides the evidence needed for multi-survey comparisons and simulation validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["filter_id", "standard_band", "relationship", "provenance"],
+  "properties": {
+    "filter_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "description": "ID of the survey-specific filter manifest (e.g. 'foundation-g')."
+    },
+    "standard_band": {
+      "type": "string",
+      "description": "The standard or reference bandpass this filter is matched to (e.g. 'SDSS-g', 'Bessel-V')."
+    },
+    "relationship": {
+      "type": "string",
+      "enum": ["identical", "approximate", "transformed"],
+      "description": "The nature of the match. 'identical' if it's the same physical filter/system; 'approximate' if it's a similar band used for comparison; 'transformed' if a recorded color term or shift is required."
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional transformation parameters (e.g. S-corrections, color terms) if the relationship is 'transformed'.",
+      "properties": {
+        "formula": { "type": "string", "description": "The mathematical formula for the transformation." },
+        "reference": { "type": "string", "description": "The publication or source of the transformation parameters." }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority"],
+      "properties": {
+        "authority": { "type": "string", "description": "The authority asserting this match (e.g. the survey paper or a cross-match study)." },
+        "url": { "type": "string", "format": "uri" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

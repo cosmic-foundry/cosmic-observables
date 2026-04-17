@@ -3,19 +3,20 @@ title: CNIa0.02 nearby Type Ia sample
 kind: survey-release
 domain: [sne-ia, photometry]
 role: Nearby volume-limited Type Ia sample for local population and calibration checks.
-homepage: https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
+homepage: https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/ApJS/259/53
+release: "Chen+2022"
 api_or_download:
-  - https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
+  - https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/ApJS/259/53
 references:
-  - label: CNIa0.02 first data release summary
-    url: https://carnegiescience.edu/first-data-release-cnia002-complete-nearby-redshift-002-sample-type-ia-supernova-light-curves
+  - label: CNIa0.02 first data release (Chen+ 2022)
+    url: https://doi.org/10.3847/1538-4365/ac562b
 status: candidate
 provenance:
-  authority: Carnegie Science / CNIa0.02 release
-  accessed: "2026-04-15"
+  authority: CNIa0.02 team / ASAS-SN
+  accessed: "2026-04-17"
   access:
-    status: unknown
-    description: Check release and paper terms before redistribution.
+    status: public
+    description: "Standard VizieR/CDS open access terms: non-commercial use with citation."
 data_products:
   - nearby Type Ia light curves
   - sample membership
@@ -23,5 +24,5 @@ data_products:
 known_caveats:
   - Volume-limited completeness criteria must be represented separately from photometry.
 next_actions:
-  - Add source-paper citation metadata.
+  - Implement CNIa0.02 normalization adapter.
   - Compare overlap with CSP, Foundation, and Pantheon+ low-redshift objects.

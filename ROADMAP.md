@@ -160,7 +160,7 @@ Deliverables:
   calibration provenance.
 - [x] Filter metadata policy using survey-prefixed passbands and SVO
   Filter Profile Service links.
-- [ ] Filter cross-matching evidence linking survey-internal bands to
+- [x] Filter cross-matching evidence linking survey-internal bands to
   standard bandpasses (e.g., PS1-g to standard g).
 - [ ] Calibration and extinction policy: explicit recording of whether
   Galactic extinction and K-corrections are applied in normalized

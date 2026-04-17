@@ -4,18 +4,19 @@ kind: archive
 domain: [transients, sne-ia]
 role: Official IAU naming, discovery, and classification report source for astronomical transients.
 homepage: https://www.wis-tns.org/
+release: "live"
 api_or_download:
   - https://www.wis-tns.org/content/tns-getting-started
 references:
   - label: TNS getting started and API overview
     url: https://www.wis-tns.org/content/tns-getting-started
-status: planned
+status: available
 provenance:
   authority: TNS / IAU supernova naming workflow
-  accessed: "2026-04-15"
+  accessed: "2026-04-17"
   access:
-    status: unknown
-    description: Check TNS API and bulk-use terms before storing derived artifacts.
+    status: public
+    description: "TNS data is public; API usage is subject to TNS terms and rate limiting."
 data_products:
   - transient names and aliases
   - coordinates

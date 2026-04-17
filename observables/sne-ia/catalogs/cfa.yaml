@@ -1,27 +1,27 @@
 id: cfa
-title: CfA Supernova Archive and CfA Type Ia releases
+title: CfA4 Type Ia Supernova Photometry
 kind: survey-release
-domain: [sne-ia, photometry, spectroscopy]
-role: Historical low-redshift light-curve and spectral reference data.
-homepage: https://lweb.cfa.harvard.edu/supernova/SNarchive.html
+domain: [sne-ia, photometry]
+role: Low-redshift Type Ia light curves from the FLWO 1.2m telescope.
+homepage: https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/ApJS/200/12
+release: "Hicken+2012"
 api_or_download:
-  - https://lweb.cfa.harvard.edu/supernova/SNarchive.html
+  - https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/ApJS/200/12
 references:
-  - label: CfA Supernova Archive
-    url: https://lweb.cfa.harvard.edu/supernova/SNarchive.html
+  - label: CfA4 release (Hicken+ 2012)
+    url: https://doi.org/10.1088/0067-0049/200/2/12
 status: candidate
 provenance:
-  authority: Center for Astrophysics supernova archive
-  accessed: "2026-04-15"
+  authority: Center for Astrophysics (CfA)
+  accessed: "2026-04-17"
   access:
-    status: unknown
-    description: Check archive and publication terms before redistribution.
+    status: public
+    description: "Standard VizieR/CDS open access terms: non-commercial use with citation."
 data_products:
   - light curves
-  - spectra
-  - publication-specific tables
+  - standard-system photometry
 known_caveats:
-  - Legacy formats and calibration conventions may vary across CfA releases.
+  - Extinction corrections and filter-system transforms should be verified against later re-calibrations.
 next_actions:
-  - Split catalog manifests by release once ingestion begins.
-  - Identify canonical tables for CfA3, CfA4, and spectral releases.
+  - Implement CfA4 normalization adapter.
+  - Add CfA3 (Hicken+ 2009) as a separate catalog manifest.

@@ -1,0 +1,7 @@
+filter_id: csp-dr3-v
+standard_band: Landolt-V
+relationship: approximate
+provenance:
+  authority: "Krisciunas et al. 2017 (CSP DR3)"
+  url: https://doi.org/10.3847/1538-3881/aa784d
+  notes: "CSP-V is a custom filter, often compared to Landolt V with color terms."

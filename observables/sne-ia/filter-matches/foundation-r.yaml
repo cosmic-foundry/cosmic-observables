@@ -1,0 +1,7 @@
+filter_id: foundation-r
+standard_band: PS1-r
+relationship: identical
+provenance:
+  authority: "Foley et al. 2018 (Foundation)"
+  url: https://doi.org/10.1093/mnras/stx3136
+  notes: "Foundation photometry is reported in the Pan-STARRS1 natural system."
