@@ -126,6 +126,8 @@ Deliverables:
 - [x] TNS adapter for metadata, names, aliases, coordinates,
   classifications, reports, and redshift / host fields where
   available.
+- [x] Schema for coordinate, redshift, and classification disagreement
+  evidence. (Implemented in object.schema.json).
 - [ ] Alias table linking TNS names, historical SN names, survey IDs, and
   archive-specific object identifiers.
 - [x] Cross-match checks for Pantheon+ objects against TNS and source

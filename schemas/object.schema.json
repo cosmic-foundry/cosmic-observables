@@ -130,6 +130,67 @@
       "format": "date",
       "description": "ISO 8601 date of first reported detection. Optional; may be approximate for historical objects."
     },
+    "disagreements": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Conflicting evidence for core properties from different catalogs. Use this to record why a specific 'working' value was chosen over others.",
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ra", "dec", "catalog"],
+            "properties": {
+              "ra": { "type": "number" },
+              "dec": { "type": "number" },
+              "catalog": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "redshift": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "catalog"],
+            "properties": {
+              "value": { "type": "number" },
+              "catalog": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "host_galaxy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "catalog"],
+            "properties": {
+              "name": { "type": "string" },
+              "catalog": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "classification": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "catalog"],
+            "properties": {
+              "type": { "type": "string", "enum": ["sne-ia"] },
+              "subtype": { "type": "string" },
+              "catalog": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
     "aliases": {
       "type": "array",
       "description": "Cross-catalog ID records. Each entry is evidence that a catalog's internal identifier refers to this object. match_type records how the correspondence was established.",

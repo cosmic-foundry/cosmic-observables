@@ -97,6 +97,10 @@ def test_object_manifests_match_schema() -> None:
         validator.validate(manifest)
         assert manifest["id"] == path.stem
 
+    # Test fixture with disagreements
+    fixture_path = ROOT / "tests" / "fixtures" / "object-with-disagreements.yaml"
+    validator.validate(_load_yaml(fixture_path))
+
 
 def test_object_alias_catalogs_exist() -> None:
     allowed_catalogs = _catalog_ids() | {LITERATURE_SENTINEL}

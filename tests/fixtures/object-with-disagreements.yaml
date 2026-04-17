@@ -1,0 +1,35 @@
+id: sn-test-disagreement
+name: SN TEST
+domain: [sne-ia]
+tns_name: SN 2024abc
+coordinates:
+  ra: 100.0
+  dec: 20.0
+  source: tns
+redshift:
+  value: 0.05
+  source_type: sn-spectrum
+  catalog: tns
+classification:
+  type: sne-ia
+  confidence: secure
+  catalog: tns
+disagreements:
+  coordinates:
+    - ra: 100.0001
+      dec: 20.0001
+      catalog: literature
+      notes: "Discovery report used slightly different centroid."
+  redshift:
+    - value: 0.051
+      catalog: literature
+      notes: "Host galaxy redshift differs from SN spectral redshift."
+  classification:
+    - type: sne-ia
+      subtype: 91T-like
+      catalog: literature
+      notes: "Early reporting suggested 91T-like features."
+aliases:
+  - id: SN 2024abc
+    catalog: tns
+    match_type: name
