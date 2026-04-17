@@ -41,3 +41,19 @@ repos:
           - types-PyYAML
         args: [--config-file=pyproject.toml]
         files: ^src/cosmic_observables/
+
+  - repo: local
+    hooks:
+      - id: sphinx-build
+        name: sphinx-build
+        entry: sphinx-build -W docs docs/_build/html
+        language: python
+        language_version: python3.11
+        additional_dependencies:
+          - sphinx
+          - furo
+          - myst-nb
+          - sphinx-design
+          - sphinx-copybutton
+        files: ^docs/
+        pass_filenames: false
