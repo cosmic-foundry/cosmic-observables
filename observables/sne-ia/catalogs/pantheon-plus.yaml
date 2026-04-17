@@ -15,8 +15,8 @@ provenance:
   authority: Pantheon+ / SH0ES collaboration data release
   accessed: "2026-04-15"
   access:
-    status: unknown
-    description: Check repository license and paper citation requirements before redistribution.
+    status: public
+    description: "Public data release (Scolnic et al. 2022) via GitHub. Analysis code is BSD 3-Clause."
 data_products:
   - standardized distance moduli
   - redshifts

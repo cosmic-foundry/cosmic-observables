@@ -4,8 +4,9 @@ import os
 from pathlib import Path
 from typing import Any
 
-import requests  # type: ignore
 import yaml
+
+from cosmic_observables.http_client import HTTPClient
 
 TNS_API_URL = "https://www.wis-tns.org/api/get/object"
 CATALOG_ID = "tns"
@@ -135,12 +136,14 @@ def get_tns_object(objname: str) -> dict[str, Any] | None:
         slug = f"sn-{objname.lower()}"
         return TNS_FIXTURES.get(slug)
 
+    client = HTTPClient()
+    # Real TNS API call
     marker = {"tns_id": bot_id, "type": "bot", "name": "CosmicFoundryBot"}
     headers = {"User-Agent": f"tns_marker{json.dumps(marker)}"}
     data = {"objname": objname}
     payload = {"api_key": api_key, "data": json.dumps(data)}
 
-    response = requests.post(TNS_API_URL, data=payload, headers=headers)
+    response = client.post(TNS_API_URL, data=payload, headers=headers)
     response.raise_for_status()
     result = response.json()
     reply = result.get("data", {}).get("reply")
