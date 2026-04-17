@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cosmic-foundry.github.io/cosmic-observables/schemas/filter.schema.json",
+  "title": "Photometric filter passband manifest",
+  "$comment": "Defines a photometric passband (filter) used by one or more catalogs. Provides a stable identifier and links to authoritative transmission profiles (e.g. SVO).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "survey", "magnitude_system", "provenance"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "description": "Stable lowercase identifier (e.g. 'csp-dr3-b', 'ztf-g'). Must be survey-prefixed to avoid collisions."
+    },
+    "name": {
+      "type": "string",
+      "description": "Common name of the filter (e.g. 'B', 'r', 'g')."
+    },
+    "survey": {
+      "type": "string",
+      "description": "The survey or instrument that owns this filter passband."
+    },
+    "magnitude_system": {
+      "type": "string",
+      "enum": ["AB", "Vega", "SDSS", "source-native"],
+      "description": "The calibration reference system for this filter."
+    },
+    "effective_wavelength": {
+      "type": "number",
+      "description": "Approximate effective wavelength in Angstroms."
+    },
+    "svo_id": {
+      "type": "string",
+      "description": "Link to the SVO Filter Profile Service identifier (e.g. 'Carnegie/CSP.B')."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority"],
+      "properties": {
+        "authority": { "type": "string", "description": "The source of the filter profile (e.g. a specific paper or archive)." },
+        "url": { "type": "string", "format": "uri" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
