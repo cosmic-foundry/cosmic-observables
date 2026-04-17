@@ -183,15 +183,22 @@ WISeREP.
 
 Deliverables:
 
-- Metadata-only WISeREP availability index for the first curated
+- [ ] Metadata-only WISeREP availability index for the first curated
   object set.
-- Spectrum schema aligned with IVOA/specutils concepts: wavelength,
+- [ ] Spectrum schema aligned with IVOA/specutils concepts: wavelength,
   flux density, units, frame, phase, calibration notes, source file,
   and citation.
-- Benchmark definitions for Si II 6355 and other Type Ia spectral
+- [ ] Spectral coordinate system policy: explicit recording of vacuum vs.
+  air wavelength and rest-frame vs. observer-frame coordinate systems.
+- [ ] Benchmark definitions for Si II 6355 and other Type Ia spectral
   features, including measurement method metadata.
-- Tests for wavelength coverage, phase availability, and feature
+- [ ] Tests for wavelength coverage, phase availability, and feature
   extraction on small fixtures.
+
+### Phase 4 Learnings & Adjustments
+
+- **Identity Skepticism**: Coordinate discrepancies for canonical objects (e.g., SN 2011fe) underscore the need for Phase 3 evidence recording over silent merging. Phase 5 benchmarks should explicitly record the coordinate source used for any wavelength shifts.
+- **Correction Policy**: ADR-0003 booleans for photometry work well, but spectroscopy requires more nuanced treatment of telluric removal and reddening corrections.
 
 Exit criteria:
 
