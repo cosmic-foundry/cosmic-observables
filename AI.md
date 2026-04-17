@@ -67,7 +67,8 @@ To ensure continuity across sessions and clarity for reviewers:
 1.  **Handshake**: At the start of every session, read `ROADMAP.md` in full to identify the current active Phase and completed deliverables.
 2.  **Alignment**: Every PR must include a "Roadmap Alignment" section (see PR template) stating which Phase/Deliverable it addresses.
 3.  **Progression**: If a task completes a Roadmap deliverable, propose an update to `ROADMAP.md` (checking the box or updating the Status) as part of the same PR.
-4.  **Hand-off**: In the final turn of a session, explicitly state the current Roadmap status (e.g., "Phase 3 is 50% complete; next is Deliverable X").
+4.  **Phase Transition Review**: Upon completion of a Roadmap Phase (all deliverables checked, status marked Complete), the agent MUST perform a comprehensive review of the codebase, roadmap, and architecture documents. The goal is to identify learnings from the completed phase that necessitate updates to future phase goals or architectural ADRs before initiating work on the next phase.
+5.  **Hand-off**: In the final turn of a session, explicitly state the current Roadmap status (e.g., "Phase 3 is 100% complete; pending Phase Transition Review").
 
 ## Technical Reasoning
 
