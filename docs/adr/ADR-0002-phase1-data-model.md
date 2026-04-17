@@ -1,0 +1,1 @@
+../../adr/ADR-0002-phase1-data-model.md
