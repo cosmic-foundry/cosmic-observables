@@ -145,6 +145,8 @@ Exit criteria:
 
 ## Phase 4 -- Nearby photometric calibration set
 
+Status: **In progress**.
+
 Goal: create the first source-rich light-curve validation product for
 synthetic Type Ia observables.
 
@@ -153,17 +155,19 @@ selected CfA releases.
 
 Deliverables:
 
-- Photometry schema with filter system, magnitude / flux convention,
+- [ ] Photometry schema with filter system, magnitude / flux convention,
   uncertainty, time system, observer/rest-frame phase metadata, and
   calibration provenance.
-- Filter metadata policy using source-native passbands plus SVO or
-  another documented passband reference where appropriate.
-- Small fixture set of canonical nearby SNe Ia for tests and human
-  explorer pages.
-- Normalization adapters for one source at a time, beginning with CSP
-  DR3 if access and terms are acceptable.
-- Validation-set documentation for light-curve color, luminosity, and
-  phase evolution comparisons.
+- [ ] Filter metadata policy using survey-prefixed passbands and SVO
+  Filter Profile Service links.
+- [ ] Filter cross-matching evidence linking survey-internal bands to
+  standard bandpasses (e.g., PS1-g to standard g).
+- [ ] Calibration and extinction policy: explicit recording of whether
+  Galactic extinction and K-corrections are applied in normalized
+  artifacts.
+- [ ] Small fixture set of canonical nearby SNe Ia with multi-band
+  light curves.
+- [ ] Normalization adapters for CSP DR3 and Foundation releases.
 
 Exit criteria:
 
