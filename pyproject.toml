@@ -18,6 +18,13 @@ dependencies = [
 test = [
   "pytest",
 ]
+docs = [
+  "sphinx",
+  "furo",
+  "myst-nb",
+  "sphinx-design",
+  "sphinx-copybutton",
+]
 dev = [
   "pytest",
   "pre-commit",

@@ -3,7 +3,15 @@
 Cosmic Observables organizes empirical astronomy reference data for
 simulation validation and human exploration.
 
-Start with:
+```{toctree}
+:maxdepth: 2
+:caption: Contents:
 
-- [Type Ia supernova observables](sne-ia/index.md)
-- [ADR index](../adr/README.md)
+sne-ia/index
+ROADMAP
+../adr/README
+```
+
+## Getting Started
+
+Start with the [Type Ia supernova observables](sne-ia/index.md) or review the [Architectural Decision Records](../adr/README.md).
