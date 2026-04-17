@@ -128,12 +128,13 @@ Deliverables:
   available.
 - [x] Schema for coordinate, redshift, and classification disagreement
   evidence. (Implemented in object.schema.json).
-- [ ] Alias table linking TNS names, historical SN names, survey IDs, and
-  archive-specific object identifiers.
+- [x] Alias table linking TNS names, historical SN names, survey IDs, and
+  archive-specific object identifiers. (Generated for Pantheon+).
 - [x] Cross-match checks for Pantheon+ objects against TNS and source
   survey manifests. (Verified matches for core calibrator set).
-- [ ] Rules for conflicts: coordinates, classification labels, host
-  associations, redshifts, and duplicate aliases.
+- [x] Rules for conflicts: coordinates, classification labels, host
+  associations, redshifts, and duplicate aliases. (Evidence recorded
+  in disagreements schema).
 
 Exit criteria:
 

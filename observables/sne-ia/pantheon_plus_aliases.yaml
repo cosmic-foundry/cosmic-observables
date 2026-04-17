@@ -1,0 +1,46 @@
+catalog: pantheon-plus
+matches:
+- pantheon_cid: 2011fe
+  canonical_slug: sn-2011fe
+  separation_arcsec: 270.9701029894161
+  match_basis: name-verified-by-coordinate
+- pantheon_cid: 1994DRichmond
+  canonical_slug: sn-1994d
+  separation_arcsec: 1.292609736452865
+  match_basis: name-verified-by-coordinate
+- pantheon_cid: 2005cf
+  canonical_slug: sn-2005cf
+  separation_arcsec: 0.9668367396738033
+  match_basis: name-verified-by-coordinate
+unmatched_count: 1540
+unmatched_samples:
+- pantheon_cid: 2012cg
+  ra: 186.803
+  dec: 9.4203
+- pantheon_cid: 1981B
+  ra: 188.623
+  dec: 2.1998
+- pantheon_cid: 2013aa
+  ra: 218.141
+  dec: -44.2244
+- pantheon_cid: 2017cbv
+  ra: 218.143
+  dec: -44.1341
+- pantheon_cid: 2001el
+  ra: 56.1275
+  dec: -44.6398
+- pantheon_cid: 2011by
+  ra: 178.94
+  dec: 55.3256
+- pantheon_cid: 1998aq
+  ra: 179.108
+  dec: 55.1287
+- pantheon_cid: 1990N
+  ra: 190.736
+  dec: 13.2565
+- pantheon_cid: 2021pit
+  ra: 56.1257
+  dec: -44.6325
+- pantheon_cid: 2005df
+  ra: 64.4077
+  dec: -62.7693

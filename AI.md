@@ -68,3 +68,12 @@ To ensure continuity across sessions and clarity for reviewers:
 2.  **Alignment**: Every PR must include a "Roadmap Alignment" section (see PR template) stating which Phase/Deliverable it addresses.
 3.  **Progression**: If a task completes a Roadmap deliverable, propose an update to `ROADMAP.md` (checking the box or updating the Status) as part of the same PR.
 4.  **Hand-off**: In the final turn of a session, explicitly state the current Roadmap status (e.g., "Phase 3 is 50% complete; next is Deliverable X").
+
+## Technical Reasoning
+
+Astronomy data is heterogeneous and prone to ID collisions. When resolving cross-catalog identities or recording physical quantities:
+
+1.  **Skepticism**: Do not assume two objects with the same ID string are the same physical event. Verify using coordinates (RA/Dec separation) and redshifts.
+2.  **Order of Magnitude**: Perform "sanity check" calculations for discrepancies. (e.g., a 50-degree separation is a different constellation; a 5-arcmin separation is a host-galaxy-scale disagreement).
+3.  **Physical Context**: Validate metadata against physical reality (e.g., does the reported redshift match the recession velocity of the assigned host galaxy?).
+4.  **Evidence over Truth**: Use the `disagreements` schema and `manual` match-type notes to record conflicting evidence rather than silently averaging or selecting one "truth."
