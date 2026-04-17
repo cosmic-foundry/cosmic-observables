@@ -145,7 +145,7 @@ Exit criteria:
 
 ## Phase 4 -- Nearby photometric calibration set
 
-Status: **Implementing**.
+Status: **Complete**.
 
 Goal: create the first source-rich light-curve validation product for
 synthetic Type Ia observables.
@@ -162,9 +162,9 @@ Deliverables:
   Filter Profile Service links.
 - [x] Filter cross-matching evidence linking survey-internal bands to
   standard bandpasses (e.g., PS1-g to standard g).
-- [ ] Calibration and extinction policy: explicit recording of whether
+- [x] Calibration and extinction policy: explicit recording of whether
   Galactic extinction and K-corrections are applied in normalized
-  artifacts.
+  artifacts. (Recorded in ADR-0003).
 - [x] Small fixture set of canonical nearby SNe Ia with multi-band
   light curves.
 - [x] Normalization adapters for CSP DR3 and Foundation releases.
