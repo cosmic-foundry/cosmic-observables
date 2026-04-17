@@ -31,7 +31,7 @@ observables, galaxy surveys, and cosmology products.
 
 ## Phase 0 -- Bootstrap the evidence registry
 
-Status: in progress.
+Status: **Complete**.
 
 Goal: make the repository reviewable and give future data work a
 stable shape.
@@ -87,6 +87,8 @@ Exit criteria:
 
 ## Phase 2 -- First reproducible Type Ia validation product
 
+Status: **Complete**.
+
 Goal: build one complete end-to-end validation product instead of
 spreading effort thinly across every source.
 
@@ -113,6 +115,8 @@ Exit criteria:
   upstream file layout.
 
 ## Phase 3 -- Object identity and source cross-matching
+
+Status: **In progress**.
 
 Goal: make object-level exploration reliable enough for humans and
 for multi-source validation sets.
