@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG_DIR = ROOT / "observables" / "sne-ia" / "catalogs"
 OBJECT_DIR = ROOT / "observables" / "sne-ia" / "objects"
 VALIDATION_SET_DIR = ROOT / "observables" / "sne-ia" / "validation-sets"
+FILTER_DIR = ROOT / "observables" / "sne-ia" / "filters"
 LITERATURE_SENTINEL = "literature"
 
 
@@ -83,6 +84,21 @@ def test_catalog_manifests_match_schema() -> None:
         assert manifest["id"] == path.stem
 
 
+def test_filter_manifests_match_schema() -> None:
+    schema = _load_schema("filter.schema.json")
+    validator = Draft202012Validator(
+        schema,
+        format_checker=Draft202012Validator.FORMAT_CHECKER,
+    )
+    paths = sorted(FILTER_DIR.glob("*.yaml"))
+    assert paths
+
+    for path in paths:
+        manifest = _load_yaml(path)
+        validator.validate(manifest)
+        assert manifest["id"] == path.stem
+
+
 def test_object_manifests_match_schema() -> None:
     schema = _load_schema("object.schema.json")
     validator = Draft202012Validator(
@@ -142,6 +158,7 @@ def test_manifest_ids_are_globally_unique() -> None:
         *CATALOG_DIR.glob("*.yaml"),
         *OBJECT_DIR.glob("*.yaml"),
         *VALIDATION_SET_DIR.glob("*.yaml"),
+        *FILTER_DIR.glob("*.yaml"),
     ]
     assert manifest_paths
 
