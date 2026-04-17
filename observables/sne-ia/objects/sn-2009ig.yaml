@@ -27,4 +27,7 @@ aliases:
 - id: NGC 7425-SN1
   catalog: literature
   match_type: name
+- id: 2009ig
+  catalog: csp-dr3
+  match_type: name
 # Note: Pantheon+ CID '2009ig' is a different physical object (SDSS source) and is NOT an alias for this event.

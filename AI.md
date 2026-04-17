@@ -78,3 +78,10 @@ Astronomy data is heterogeneous and prone to ID collisions. When resolving cross
 2.  **Order of Magnitude**: Perform "sanity check" calculations for discrepancies. (e.g., a 50-degree separation is a different constellation; a 5-arcmin separation is a host-galaxy-scale disagreement).
 3.  **Physical Context**: Validate metadata against physical reality (e.g., does the reported redshift match the recession velocity of the assigned host galaxy?).
 4.  **Evidence over Truth**: Use the `disagreements` schema and `manual` match-type notes to record conflicting evidence rather than silently averaging or selecting one "truth."
+
+## Bot Etiquette and Identity
+
+This repository uses a centralized `HTTPClient` for external data access. Agents must distinguish between research and automated identities:
+
+1.  **Research Identity**: For one-time tasks such as initial data ingestion, schema research, or building a new adapter, use the `STANDARD_UA` (browser-like) and disable strict `robots.txt` enforcement. This represents the agent acting as a human researcher.
+2.  **Automated Identity**: For recurring tasks, published code, CI workflows, and user-facing APIs, use the `BOT_UA` (`CosmicFoundryBot`) and enforce `robots.txt` strictly. This ensures the project remains a transparent and accountable citizen of the astronomical data community.

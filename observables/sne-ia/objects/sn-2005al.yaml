@@ -1,14 +1,14 @@
-id: sn-2002bo
-name: SN 2002bo
+id: sn-2005al
+name: SN 2005al
 domain:
 - sne-ia
-tns_name: SN 2002bo
+tns_name: SN 2005al
 coordinates:
-  ra: 154.527125
-  dec: 21.828306
+  ra: 207.501375
+  dec: -30.576167
   source: tns
 redshift:
-  value: 0.0042
+  value: 0.0124
   source_type: literature
   catalog: tns
 classification:
@@ -17,16 +17,13 @@ classification:
   confidence: secure
   catalog: tns
 aliases:
-- id: SN 2002bo
+- id: SN 2005al
   catalog: tns
   match_type: name
-- id: NGC 3190-SN1
+- id: NGC 5304-SN1
   catalog: literature
   match_type: name
-- id: 2002bo
-  catalog: csp-dr3
-  match_type: name
 host_galaxy:
-  name: NGC 3190
+  name: NGC 5304
   catalog: tns
-first_observed: '2002-03-09'
+first_observed: '2005-02-14'

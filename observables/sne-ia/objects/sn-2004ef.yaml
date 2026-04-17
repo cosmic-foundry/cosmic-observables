@@ -1,14 +1,14 @@
-id: sn-2002bo
-name: SN 2002bo
+id: sn-2004ef
+name: SN 2004ef
 domain:
 - sne-ia
-tns_name: SN 2002bo
+tns_name: SN 2004ef
 coordinates:
-  ra: 154.527125
-  dec: 21.828306
+  ra: 340.54175
+  dec: 19.994556
   source: tns
 redshift:
-  value: 0.0042
+  value: 0.031
   source_type: literature
   catalog: tns
 classification:
@@ -17,16 +17,13 @@ classification:
   confidence: secure
   catalog: tns
 aliases:
-- id: SN 2002bo
+- id: SN 2004ef
   catalog: tns
   match_type: name
-- id: NGC 3190-SN1
+- id: UGC 12158-SN1
   catalog: literature
   match_type: name
-- id: 2002bo
-  catalog: csp-dr3
-  match_type: name
 host_galaxy:
-  name: NGC 3190
+  name: UGC 12158
   catalog: tns
-first_observed: '2002-03-09'
+first_observed: '2004-09-04'

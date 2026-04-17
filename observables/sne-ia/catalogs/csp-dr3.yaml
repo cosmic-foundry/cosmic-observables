@@ -7,10 +7,11 @@ homepage: https://csp.obs.carnegiescience.edu/data
 release: "DR3"
 api_or_download:
   - https://csp.obs.carnegiescience.edu/data
+  - https://vizier.cds.unistra.fr/viz-bin/nph-Cat/txt?J/AJ/154/211/table3.dat
 references:
   - label: CSP DR3 release note
     url: https://csp.obs.carnegiescience.edu/news-items/csp-dr3-photometry-released
-status: candidate
+status: ingesting
 provenance:
   authority: Carnegie Supernova Project
   accessed: "2026-04-15"
