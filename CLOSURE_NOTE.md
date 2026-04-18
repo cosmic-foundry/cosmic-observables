@@ -77,5 +77,8 @@ pointer to its two successor locations.
 The infrastructure that was in `src/cosmic_observables/http_client.py`,
 `provenance.py`, `bibliography.py`, and the base schema validation
 machinery now lives in `cosmic_foundry.manifests` (cosmic-foundry
-`[observational]` extra). The stellar-physics application repository
-should depend on that, not re-implement it.
+`[observational]` extra). The `ValidationAdapter` protocol
+(`adapter.py`) also lives there — the stellar-physics application
+repository implements the protocol, it does not re-define it. All
+application repos should depend on `cosmic_foundry.manifests`, not
+re-implement any of it.
